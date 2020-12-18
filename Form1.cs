@@ -51,5 +51,25 @@ namespace WF_Kurs
                 textBoxNewEmail.Top += 11;
             }
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void buttonChange_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void buttonAcceptAdd_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void buttonAcceptCh_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

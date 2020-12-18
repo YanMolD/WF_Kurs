@@ -154,6 +154,7 @@
             this.buttonAdd.TabIndex = 13;
             this.buttonAdd.Text = "Добавить контакт";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonDelete
             // 
@@ -163,6 +164,7 @@
             this.buttonDelete.TabIndex = 14;
             this.buttonDelete.Text = "Удалить контакт";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonAcceptCh
             // 
@@ -173,6 +175,7 @@
             this.buttonAcceptCh.Text = "Подтвердить";
             this.buttonAcceptCh.UseVisualStyleBackColor = true;
             this.buttonAcceptCh.Visible = false;
+            this.buttonAcceptCh.Click += new System.EventHandler(this.buttonAcceptCh_Click);
             // 
             // buttonChange
             // 
@@ -182,6 +185,7 @@
             this.buttonChange.TabIndex = 16;
             this.buttonChange.Text = "Редактировать";
             this.buttonChange.UseVisualStyleBackColor = true;
+            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
             // 
             // buttonAcceptAdd
             // 
@@ -192,6 +196,7 @@
             this.buttonAcceptAdd.Text = "Подтвердить";
             this.buttonAcceptAdd.UseVisualStyleBackColor = true;
             this.buttonAcceptAdd.Visible = false;
+            this.buttonAcceptAdd.Click += new System.EventHandler(this.buttonAcceptAdd_Click);
             // 
             // Form1
             // 
