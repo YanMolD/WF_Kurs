@@ -1,4 +1,4 @@
-﻿namespace WF_Kurs
+namespace WF_Kurs
 {
     partial class Form1
     {
@@ -207,6 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(960, 610);
             this.Controls.Add(this.buttonAcceptAdd);
             this.Controls.Add(this.buttonChange);
