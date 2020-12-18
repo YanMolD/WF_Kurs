@@ -61,6 +61,7 @@
             // 
             this.textBoxName.Location = new System.Drawing.Point(487, 10);
             this.textBoxName.Name = "textBoxName";
+            this.textBoxName.ReadOnly = true;
             this.textBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.textBoxName.Size = new System.Drawing.Size(155, 26);
             this.textBoxName.TabIndex = 1;
@@ -69,6 +70,7 @@
             // 
             this.textBoxAdress.Location = new System.Drawing.Point(487, 42);
             this.textBoxAdress.Name = "textBoxAdress";
+            this.textBoxAdress.ReadOnly = true;
             this.textBoxAdress.Size = new System.Drawing.Size(155, 26);
             this.textBoxAdress.TabIndex = 2;
             // 
@@ -121,6 +123,7 @@
             // 
             this.textBoxDate.Location = new System.Drawing.Point(783, 10);
             this.textBoxDate.Name = "textBoxDate";
+            this.textBoxDate.ReadOnly = true;
             this.textBoxDate.Size = new System.Drawing.Size(155, 26);
             this.textBoxDate.TabIndex = 9;
             // 
@@ -129,6 +132,7 @@
             this.textBoxNewNum.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBoxNewNum.Location = new System.Drawing.Point(487, 76);
             this.textBoxNewNum.Name = "textBoxNewNum";
+            this.textBoxNewNum.ReadOnly = true;
             this.textBoxNewNum.Size = new System.Drawing.Size(155, 26);
             this.textBoxNewNum.TabIndex = 11;
             this.textBoxNewNum.Text = "Добавить номер...";
@@ -140,6 +144,7 @@
             this.textBoxNewEmail.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBoxNewEmail.Location = new System.Drawing.Point(783, 45);
             this.textBoxNewEmail.Name = "textBoxNewEmail";
+            this.textBoxNewEmail.ReadOnly = true;
             this.textBoxNewEmail.Size = new System.Drawing.Size(155, 26);
             this.textBoxNewEmail.TabIndex = 12;
             this.textBoxNewEmail.Text = "Добавить Email...";
