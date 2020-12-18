@@ -24,31 +24,31 @@ namespace WF_Kurs
         {
         }
 
-        private void textBox6_MouseClick(object sender, MouseEventArgs e)
+        private void textBoxNewNum_MouseClick(object sender, MouseEventArgs e)
         {
-            textBox6.Text = "";
+            textBoxNewNum.Text = "";
         }
 
-        private void textBox6_TextChanged(object sender, EventArgs e)
+        private void textBoxNewNum_TextChanged(object sender, EventArgs e)
         {
-            if (textBox6.Text != "")
+            if (textBoxNewNum.Text != "")
             {
-                textBox6.Text = "Добавить номер...";
-                textBox6.Top += 11;
+                textBoxNewNum.Text = "Добавить номер...";
+                textBoxNewNum.Top += 11;
             }
         }
 
-        private void textBox7_MouseClick(object sender, MouseEventArgs e)
+        private void textBoxNewEmail_MouseClick(object sender, MouseEventArgs e)
         {
-            textBox7.Text = "";
+            textBoxNewEmail.Text = "";
         }
 
-        private void textBox7_TextChanged(object sender, EventArgs e)
+        private void textBoxNewEmail_TextChanged(object sender, EventArgs e)
         {
-            if (textBox7.Text != "")
+            if (textBoxNewEmail.Text != "")
             {
-                textBox7.Text = "Добавить Email...";
-                textBox7.Top += 11;
+                textBoxNewEmail.Text = "Добавить номер...";
+                textBoxNewEmail.Top += 11;
             }
         }
     }

@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxAdress = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelAddress = new System.Windows.Forms.Label();
+            this.labelNum = new System.Windows.Forms.Label();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.textBoxDate = new System.Windows.Forms.TextBox();
+            this.textBoxNewNum = new System.Windows.Forms.TextBox();
+            this.textBoxNewEmail = new System.Windows.Forms.TextBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonAcceptCh = new System.Windows.Forms.Button();
+            this.buttonChange = new System.Windows.Forms.Button();
+            this.buttonAcceptAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -50,130 +52,167 @@
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(13, 13);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(327, 584);
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(327, 164);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // textBoxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(487, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBox1.Size = new System.Drawing.Size(155, 26);
-            this.textBox1.TabIndex = 1;
+            this.textBoxName.Location = new System.Drawing.Point(487, 10);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxName.Size = new System.Drawing.Size(155, 26);
+            this.textBoxName.TabIndex = 1;
             // 
-            // textBox2
+            // textBoxAdress
             // 
-            this.textBox2.Location = new System.Drawing.Point(487, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(155, 26);
-            this.textBox2.TabIndex = 2;
+            this.textBoxAdress.Location = new System.Drawing.Point(487, 42);
+            this.textBoxAdress.Name = "textBoxAdress";
+            this.textBoxAdress.Size = new System.Drawing.Size(155, 26);
+            this.textBoxAdress.TabIndex = 2;
             // 
-            // textBox3
+            // labelName
             // 
-            this.textBox3.Location = new System.Drawing.Point(487, 76);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(155, 26);
-            this.textBox3.TabIndex = 3;
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(347, 13);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(114, 20);
+            this.labelName.TabIndex = 4;
+            this.labelName.Text = "Имя контакта";
             // 
-            // label1
+            // labelAddress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(347, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Имя контакта";
+            this.labelAddress.AutoSize = true;
+            this.labelAddress.Location = new System.Drawing.Point(347, 45);
+            this.labelAddress.Name = "labelAddress";
+            this.labelAddress.Size = new System.Drawing.Size(140, 20);
+            this.labelAddress.TabIndex = 5;
+            this.labelAddress.Text = "Домашний адрес";
             // 
-            // label2
+            // labelNum
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(347, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Домашний адрес";
+            this.labelNum.AutoSize = true;
+            this.labelNum.Location = new System.Drawing.Point(347, 79);
+            this.labelNum.Name = "labelNum";
+            this.labelNum.Size = new System.Drawing.Size(132, 20);
+            this.labelNum.TabIndex = 6;
+            this.labelNum.Text = "Список номеров";
             // 
-            // label3
+            // labelDate
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(347, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Список номеров";
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(649, 13);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(128, 20);
+            this.labelDate.TabIndex = 7;
+            this.labelDate.Text = "Дата рождения";
             // 
-            // label4
+            // labelEmail
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(649, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Дата рождения";
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(653, 45);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(127, 20);
+            this.labelEmail.TabIndex = 8;
+            this.labelEmail.Text = "Список Email\'ов";
             // 
-            // label5
+            // textBoxDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(653, 45);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Список Email\'ов";
+            this.textBoxDate.Location = new System.Drawing.Point(783, 10);
+            this.textBoxDate.Name = "textBoxDate";
+            this.textBoxDate.Size = new System.Drawing.Size(155, 26);
+            this.textBoxDate.TabIndex = 9;
             // 
-            // textBox4
+            // textBoxNewNum
             // 
-            this.textBox4.Location = new System.Drawing.Point(783, 13);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(155, 26);
-            this.textBox4.TabIndex = 9;
+            this.textBoxNewNum.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBoxNewNum.Location = new System.Drawing.Point(487, 76);
+            this.textBoxNewNum.Name = "textBoxNewNum";
+            this.textBoxNewNum.Size = new System.Drawing.Size(155, 26);
+            this.textBoxNewNum.TabIndex = 11;
+            this.textBoxNewNum.Text = "Добавить номер...";
+            this.textBoxNewNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxNewNum_MouseClick);
+            this.textBoxNewNum.TextChanged += new System.EventHandler(this.textBoxNewNum_TextChanged);
             // 
-            // textBox5
+            // textBoxNewEmail
             // 
-            this.textBox5.Location = new System.Drawing.Point(783, 45);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(155, 26);
-            this.textBox5.TabIndex = 10;
+            this.textBoxNewEmail.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBoxNewEmail.Location = new System.Drawing.Point(783, 45);
+            this.textBoxNewEmail.Name = "textBoxNewEmail";
+            this.textBoxNewEmail.Size = new System.Drawing.Size(155, 26);
+            this.textBoxNewEmail.TabIndex = 12;
+            this.textBoxNewEmail.Text = "Добавить Email...";
+            this.textBoxNewEmail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxNewEmail_MouseClick);
+            this.textBoxNewEmail.TextChanged += new System.EventHandler(this.textBoxNewEmail_TextChanged);
             // 
-            // textBox6
+            // buttonAdd
             // 
-            this.textBox6.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox6.Location = new System.Drawing.Point(487, 108);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(155, 26);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.Text = "Добавить номер...";
-            this.textBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox6_MouseClick);
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.buttonAdd.Location = new System.Drawing.Point(13, 184);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(164, 39);
+            this.buttonAdd.TabIndex = 13;
+            this.buttonAdd.Text = "Добавить контакт";
+            this.buttonAdd.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // buttonDelete
             // 
-            this.textBox7.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox7.Location = new System.Drawing.Point(783, 79);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(155, 26);
-            this.textBox7.TabIndex = 12;
-            this.textBox7.Text = "Добавить Email...";
-            this.textBox7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox7_MouseClick);
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            this.buttonDelete.Location = new System.Drawing.Point(13, 229);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(164, 39);
+            this.buttonDelete.TabIndex = 14;
+            this.buttonDelete.Text = "Удалить контакт";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonAcceptCh
+            // 
+            this.buttonAcceptCh.Location = new System.Drawing.Point(183, 229);
+            this.buttonAcceptCh.Name = "buttonAcceptCh";
+            this.buttonAcceptCh.Size = new System.Drawing.Size(157, 39);
+            this.buttonAcceptCh.TabIndex = 15;
+            this.buttonAcceptCh.Text = "Подтвердить";
+            this.buttonAcceptCh.UseVisualStyleBackColor = true;
+            this.buttonAcceptCh.Visible = false;
+            // 
+            // buttonChange
+            // 
+            this.buttonChange.Location = new System.Drawing.Point(183, 184);
+            this.buttonChange.Name = "buttonChange";
+            this.buttonChange.Size = new System.Drawing.Size(157, 39);
+            this.buttonChange.TabIndex = 16;
+            this.buttonChange.Text = "Редактировать";
+            this.buttonChange.UseVisualStyleBackColor = true;
+            // 
+            // buttonAcceptAdd
+            // 
+            this.buttonAcceptAdd.Location = new System.Drawing.Point(183, 229);
+            this.buttonAcceptAdd.Name = "buttonAcceptAdd";
+            this.buttonAcceptAdd.Size = new System.Drawing.Size(157, 39);
+            this.buttonAcceptAdd.TabIndex = 17;
+            this.buttonAcceptAdd.Text = "Подтвердить";
+            this.buttonAcceptAdd.UseVisualStyleBackColor = true;
+            this.buttonAcceptAdd.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 610);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonAcceptAdd);
+            this.Controls.Add(this.buttonChange);
+            this.Controls.Add(this.buttonAcceptCh);
+            this.Controls.Add(this.buttonDelete);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.textBoxNewEmail);
+            this.Controls.Add(this.textBoxNewNum);
+            this.Controls.Add(this.textBoxDate);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.labelDate);
+            this.Controls.Add(this.labelNum);
+            this.Controls.Add(this.labelAddress);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.textBoxAdress);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.listBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -183,21 +222,22 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxAdress;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelAddress;
+        private System.Windows.Forms.Label labelNum;
+        private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.TextBox textBoxDate;
+        private System.Windows.Forms.TextBox textBoxNewNum;
+        private System.Windows.Forms.TextBox textBoxNewEmail;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonAcceptCh;
+        private System.Windows.Forms.Button buttonChange;
+        private System.Windows.Forms.Button buttonAcceptAdd;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,12 +9,13 @@ namespace WF_Kurs
 {
     internal struct Number
     {
-        private System.Windows.Forms.TextBox textBox;
+        public System.Windows.Forms.TextBox textBox;
 
-        public Number(string number)
+        public Number(string number, Point Location)
         {
             textBox = new System.Windows.Forms.TextBox();
             textBox.Visible = false;
+            textBox.Location = Location;
             textBox.Text = number;
         }
 
@@ -31,7 +33,10 @@ namespace WF_Kurs
         public string Name;
         public List<Number> list_of_numbers;
 
-        public void Add_number(Number buf) => list_of_numbers.Insert(list_of_numbers.Count, buf);
+        public void Add_number(Number buf)
+        {
+            list_of_numbers.Insert(list_of_numbers.Count, buf);
+        }
 
         public Person(string new_name)
         {
@@ -39,7 +44,12 @@ namespace WF_Kurs
             list_of_numbers = new List<Number>();
         }
 
-        public void Delete_number(int index) => list_of_numbers.RemoveAt(index);
+        public void Delete_number(int index)
+        {
+            list_of_numbers.RemoveAt(index);
+            for (int i = index; i < list_of_numbers.Count; i++)
+                list_of_numbers[i].textBox.Top -= 11;
+        }
 
         public override string ToString()
         {
@@ -73,25 +83,10 @@ namespace WF_Kurs
         public void Add_new_contact(string name)
         {
             Person person = new Person(name);
-            people.Insert(people.Count, person);
+            people.Add(person);
         }
 
         public void Add_number(Number number, int index) => people[index].Add_number(number);
-
-        public ListOfContacts Find_contacts(string data)
-        {
-            List<Person> buf_list = new List<Person>();
-            for (int i = 0; i < people.Count; i++)
-            {
-                if (people[i].Check_name(data))
-                    buf_list.Insert(buf_list.Count, people[i]);
-                else
-                if (people[i].Check_numbers(data))
-                    buf_list.Insert(buf_list.Count, people[i]);
-            }
-            ListOfContacts return_value = new ListOfContacts(buf_list);
-            return return_value;
-        }
 
         public override string ToString()
         {
