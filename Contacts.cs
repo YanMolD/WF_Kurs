@@ -4,6 +4,7 @@ using System.Linq;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WF_Kurs
 {
@@ -14,12 +15,12 @@ namespace WF_Kurs
         public Number(string number, Point Location)
         {
             textBox = new System.Windows.Forms.TextBox();
-            textBox.Visible = false;
+            textBox.Visible = true;
             textBox.Location = Location;
             textBox.Text = number;
         }
 
-        public bool Check_number(string data) => textBox.Text.Contains(data);
+        public bool Check_number() => Regex.IsMatch(textBox.Text, @"^[+][\d]+$") || Regex.IsMatch(textBox.Text, @"^[\d]+$");
 
         public void Change_number(string new_number) => textBox.Text = new_number;
 
@@ -51,6 +52,12 @@ namespace WF_Kurs
                 list_of_numbers[i].textBox.Top -= 11;
         }
 
+        public void NumbersVisibleSwitch()
+        {
+            for (int i = 0; i < list_of_numbers.Count; i++)
+                list_of_numbers[i].textBox.Visible = !list_of_numbers[i].textBox.Visible;
+        }
+        
         public override string ToString()
         {
             string buf = Name + "\n";
@@ -60,15 +67,6 @@ namespace WF_Kurs
                 buf += list_of_numbers[i];
             }
             return buf;
-        }
-
-        public bool Check_name(string data) => Name.Contains(data);
-
-        public bool Check_numbers(string data)
-        {
-            for (int i = 0; i < list_of_numbers.Count; i++)
-                if (list_of_numbers[i].Check_number(data)) return true;
-            return false;
         }
     }
 
