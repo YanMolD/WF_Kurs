@@ -34,8 +34,21 @@ namespace WF_Kurs
             if (textBox6.Text != "")
             {
                 textBox6.Text = "Добавить номер...";
-                textBox6.Top += 11
-                    ;
+                textBox6.Top += 11;
+            }
+        }
+
+        private void textBox7_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox7.Text = "";
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox7.Text != "")
+            {
+                textBox7.Text = "Добавить Email...";
+                textBox7.Top += 11;
             }
         }
     }
