@@ -35,15 +35,15 @@ namespace WF_Kurs
 
         private void TextBoxNewNum_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxNewNum.Text != "")
+            if (textBoxNewNum.Text != "" && textBoxNewNum.Text != "Добавить номер...")
             {
                 Number number_buf = new Number(textBoxNewNum.Text.Substring(0, 1), textBoxNewNum.Location, this);
                 if (Action)
-                    Contacts.People[listBox1.SelectedIndex].AddNumber(number_buf);
+                    Contacts.AddNumber(number_buf, listBox1.SelectedIndex);
                 else
-                    Contacts.People[Contacts.People.Count - 1].AddNumber(number_buf);
+                    NewContact.AddNumber(number_buf);
                 textBoxNewNum.Text = "Добавить номер...";
-                textBoxNewNum.Top += 11;
+                textBoxNewNum.Top += 22;
             }
         }
 
@@ -59,18 +59,18 @@ namespace WF_Kurs
             {
                 Email email_buf = new Email(textBoxNewEmail.Text.Substring(0, 1), textBoxNewEmail.Location, this);
                 if (Action)
-                    Contacts.People[listBox1.SelectedIndex].AddEmail(email_buf);
+                    Contacts.AddEmail(email_buf, listBox1.SelectedIndex);
                 else
-                    Contacts.People[Contacts.People.Count - 1].AddEmail(email_buf);
+                    NewContact.AddEmail(email_buf);
                 textBoxNewEmail.Text = "Добавить Email...";
-                textBoxNewEmail.Top += 11;
+                textBoxNewEmail.Top += 22;
             }
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             Action = false;
-            NewContact = new Person();
+            NewContact = new Person("");
             if (listBox1.SelectedIndex != -1)
                 Contacts.People[listBox1.SelectedIndex].NumEmVisibleSwitch();
             textBoxName.ReadOnly = false;
@@ -78,7 +78,7 @@ namespace WF_Kurs
             textBoxAdress.ReadOnly = false;
             textBoxAdress.Text = "";
             textBoxDate.ReadOnly = false;
-            textBoxName.Text = "";
+            textBoxDate.Text = "";
             textBoxNewEmail.ReadOnly = false;
             textBoxNewEmail.Top = textBoxDate.Top + 22;
             textBoxNewNum.ReadOnly = false;
@@ -94,14 +94,26 @@ namespace WF_Kurs
         {
             if (listBox1.SelectedIndex != -1)
             {
+                Action = true;
+                textBoxName.ReadOnly = false;
+                textBoxName.Text = Contacts.People[listBox1.SelectedIndex].Name;
+                textBoxAdress.ReadOnly = false;
+                textBoxAdress.Text = Contacts.People[listBox1.SelectedIndex].Adress;
+                textBoxDate.ReadOnly = false;
+                textBoxDate.Text = Contacts.People[listBox1.SelectedIndex].BDay;
+                textBoxNewEmail.ReadOnly = false;
+                textBoxNewEmail.Top = Contacts.People[listBox1.SelectedIndex].ListOfEmails.Last().textBox.Location.Y + 22;
+                textBoxNewNum.ReadOnly = false;
+                textBoxNewNum.Top = Contacts.People[listBox1.SelectedIndex].ListOfNumbers.Last().textBox.Location.Y + 22; ;
+                buttonAcceptAdd.Visible = true;
             }
         }
 
         private void ButtonAcceptAdd_Click(object sender, EventArgs e)
         {
-            if (Contacts.People[Contacts.People.Count - 1].CheckPerson())
+            if (NewContact.CheckPerson())
             {
-                Contacts.People[Contacts.People.Count - 1].NumEmVisibleSwitch();
+                NewContact.NumEmVisibleSwitch();
                 textBoxName.ReadOnly = true;
                 textBoxName.Text = "";
                 textBoxAdress.ReadOnly = true;
@@ -114,11 +126,14 @@ namespace WF_Kurs
                 textBoxNewNum.Top = textBoxAdress.Top + 22;
                 buttonAcceptAdd.Visible = false;
                 Contacts.AddNewContact(NewContact);
-                listBox1.Items.Add(Contacts.People[Contacts.People.Count - 1]);
+                listBox1.Items.Add(Contacts.People.Last().Name);
             }
             else
             {
-                MessageBox.Show("Неправильные данные");
+                if (textBoxName.Text == "")
+                    MessageBox.Show("Вы не ввели имя");
+                else
+                    MessageBox.Show("Неправильные данные");
             }
         }
 
@@ -128,8 +143,11 @@ namespace WF_Kurs
 
         private void TextBoxDate_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!textBoxDate.ReadOnly)
+            if (!textBoxDate.ReadOnly && textBoxDate.Text != "DD.MM.YYYY")
+            {
                 textBoxDate.Text = "";
+                textBoxDate.ForeColor = Color.Black;
+            }
         }
 
         private void TextBoxDate_TextChanged(object sender, EventArgs e)
