@@ -18,6 +18,7 @@ namespace WF_Kurs
             form.Controls.Add(textBox);
             textBox.Visible = true;
             textBox.Location = Location;
+            textBox.Width = 105;
             textBox.Text = number;
         }
 
@@ -52,7 +53,6 @@ namespace WF_Kurs
         public override string ToString() => textBox.Text;
     }
 
-    [Serializable]
     internal struct Person
     {
         public string Name;
@@ -111,6 +111,8 @@ namespace WF_Kurs
 
         public bool CheckPerson()
         {
+            if (Name == "")
+                return false;
             for (int i = 0; i < ListOfEmails.Count; i++)
             {
                 if (ListOfEmails[i].textBox.Text == "")
@@ -154,19 +156,13 @@ namespace WF_Kurs
 
         public ListOfContacts() => People = new List<Person>();
 
-        public ListOfContacts(List<Person> buf) => People = buf;
-
-        public void Add_new_contact(string name)
-        {
-            Person person = new Person(name);
-            People.Add(person);
-        }
-
         public void AddNewContact(Person person) => People.Add(person);
 
         public void AddNumber(Number number, int index) => People[index].AddNumber(number);
 
         public void AddEmail(Email email, int index) => People[index].AddEmail(email);
+
+        public void DeletePerson(int index) => People.RemoveAt(index);
 
         public override string ToString()
         {
