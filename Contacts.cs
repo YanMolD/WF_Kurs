@@ -34,9 +34,10 @@ namespace WF_Kurs
     {
         public System.Windows.Forms.TextBox textBox;
 
-        public Email(string email, Point Location)
+        public Email(string email, Point Location, Form1 form)
         {
             textBox = new System.Windows.Forms.TextBox();
+            form.Controls.Add(textBox);
             textBox.Visible = true;
             textBox.Location = Location;
             textBox.Text = email;
@@ -51,62 +52,97 @@ namespace WF_Kurs
         public override string ToString() => textBox.Text;
     }
 
+    [Serializable]
     internal struct Person
     {
         public string Name;
-        public List<Number> list_of_numbers;
-        public List<Email> list_of_emails;
+        public List<Number> ListOfNumbers;
+        public List<Email> ListOfEmails;
+        public string BDay;
+        public string Adress;
 
-        public void Add_number(Number buf)
-        {
-            list_of_numbers.Add(buf);
-        }
+        public void AddNumber(Number buf) => ListOfNumbers.Add(buf);
 
-        public void Add_email(Email buf)
-        {
-            list_of_emails.Add(buf);
-        }
+        public void AddEmail(Email buf) => ListOfEmails.Add(buf);
 
         public Person(string new_name)
         {
             Name = new_name;
-            list_of_numbers = new List<Number>();
-            list_of_emails = new List<Email>();
+            BDay = "";
+            Adress = "";
+            ListOfNumbers = new List<Number>();
+            ListOfEmails = new List<Email>();
         }
 
-        public void Delete_number(int index)
+        public void DeleteNumber(int index)
         {
-            list_of_numbers.RemoveAt(index);
-            for (int i = index; i < list_of_numbers.Count; i++)
-                list_of_numbers[i].textBox.Top -= 11;
+            ListOfNumbers.RemoveAt(index);
+            for (int i = index; i < ListOfNumbers.Count; i++)
+                ListOfNumbers[i].textBox.Top -= 11;
         }
 
-        public void Delete_email(int index)
+        public void DeleteEmail(int index)
         {
-            list_of_emails.RemoveAt(index);
-            for (int i = index; i < list_of_emails.Count; i++)
-                list_of_emails[i].textBox.Top -= 11;
+            ListOfEmails.RemoveAt(index);
+            for (int i = index; i < ListOfEmails.Count; i++)
+                ListOfEmails[i].textBox.Top -= 11;
+        }
+
+        public void ChangeName(string Name) => this.Name = Name;
+
+        public void ChangeAdress(string Adress) => this.Adress = Adress;
+
+        public void ChangeBDay(string date)
+        {
+            BDay = date;
         }
 
         public void NumEmVisibleSwitch()
         {
-            for (int i = 0; i < list_of_numbers.Count; i++)
+            for (int i = 0; i < ListOfNumbers.Count; i++)
             {
-                list_of_numbers[i].textBox.Visible = !list_of_numbers[i].textBox.Visible;
+                ListOfNumbers[i].textBox.Visible = !ListOfNumbers[i].textBox.Visible;
             }
-            for (int i = 0; i < list_of_emails.Count; i++)
+            for (int i = 0; i < ListOfEmails.Count; i++)
             {
-                list_of_emails[i].textBox.Visible = !list_of_emails[i].textBox.Visible;
+                ListOfEmails[i].textBox.Visible = !ListOfEmails[i].textBox.Visible;
             }
         }
+
+        public bool CheckPerson()
+        {
+            for (int i = 0; i < ListOfEmails.Count; i++)
+            {
+                if (ListOfEmails[i].textBox.Text == "")
+                    DeleteEmail(i);
+                else
+                    if (!ListOfNumbers[i].Check_number())
+                    return false;
+            }
+            for (int i = 0; i < ListOfNumbers.Count; i++)
+            {
+                if (ListOfNumbers[i].textBox.Text == "")
+                    DeleteNumber(i);
+                else
+                {
+                    if (!ListOfNumbers[i].Check_number())
+                        return false;
+                }
+            }
+            if (!CheckBDate() && BDay != "")
+                return false;
+            return true;
+        }
+
+        private bool CheckBDate() => Regex.IsMatch(BDay, @"^(00|0?[1-9]|[12][0-9]|3[01])[./-]([0]?[1-9]|[12][0-9]|[3][01])[./-]([0-9]{4}|[0-9]{2})$");
 
         public override string ToString()
         {
             string buf = Name + "\n";
-            for (int i = 0; i < list_of_numbers.Count; i++)
+            for (int i = 0; i < ListOfNumbers.Count; i++)
             {
                 buf += "    " + (i + 1) + ") ";
-                buf += list_of_numbers[i];
+                buf += ListOfNumbers[i];
             }
             return buf;
         }
@@ -114,29 +150,31 @@ namespace WF_Kurs
 
     internal class ListOfContacts
     {
-        public List<Person> people;
+        public readonly List<Person> People;
 
-        public ListOfContacts() => people = new List<Person>();
+        public ListOfContacts() => People = new List<Person>();
 
-        public ListOfContacts(List<Person> buf) => people = buf;
+        public ListOfContacts(List<Person> buf) => People = buf;
 
         public void Add_new_contact(string name)
         {
             Person person = new Person(name);
-            people.Add(person);
+            People.Add(person);
         }
 
-        public void Add_number(Number number, int index) => people[index].Add_number(number);
+        public void AddNewContact(Person person) => People.Add(person);
 
-        public void Add_Email(Email email, int index) => people[index].Add_email(email);
+        public void AddNumber(Number number, int index) => People[index].AddNumber(number);
+
+        public void AddEmail(Email email, int index) => People[index].AddEmail(email);
 
         public override string ToString()
         {
             string buf = "";
-            for (int i = 0; i < people.Count; i++)
+            for (int i = 0; i < People.Count; i++)
             {
                 buf += i + 1 + ". ";
-                buf += people[i];
+                buf += People[i];
             }
             return buf;
         }

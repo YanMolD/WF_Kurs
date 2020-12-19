@@ -55,11 +55,11 @@ namespace WF_Kurs
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(327, 164);
             this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(487, 10);
+            this.textBoxName.Location = new System.Drawing.Point(491, 10);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.ReadOnly = true;
             this.textBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -68,11 +68,12 @@ namespace WF_Kurs
             // 
             // textBoxAdress
             // 
-            this.textBoxAdress.Location = new System.Drawing.Point(487, 42);
+            this.textBoxAdress.Location = new System.Drawing.Point(491, 42);
             this.textBoxAdress.Name = "textBoxAdress";
             this.textBoxAdress.ReadOnly = true;
             this.textBoxAdress.Size = new System.Drawing.Size(155, 26);
             this.textBoxAdress.TabIndex = 2;
+            this.textBoxAdress.TextChanged += new System.EventHandler(this.TextBoxAdress_TextChanged);
             // 
             // labelName
             // 
@@ -113,7 +114,7 @@ namespace WF_Kurs
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(653, 45);
+            this.labelEmail.Location = new System.Drawing.Point(649, 45);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(127, 20);
             this.labelEmail.TabIndex = 8;
@@ -121,23 +122,27 @@ namespace WF_Kurs
             // 
             // textBoxDate
             // 
+            this.textBoxDate.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBoxDate.Location = new System.Drawing.Point(783, 10);
             this.textBoxDate.Name = "textBoxDate";
             this.textBoxDate.ReadOnly = true;
             this.textBoxDate.Size = new System.Drawing.Size(155, 26);
             this.textBoxDate.TabIndex = 9;
+            this.textBoxDate.Text = "DD.MM.YYYY";
+            this.textBoxDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxDate_MouseClick);
+            this.textBoxDate.TextChanged += new System.EventHandler(this.TextBoxDate_TextChanged);
             // 
             // textBoxNewNum
             // 
             this.textBoxNewNum.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxNewNum.Location = new System.Drawing.Point(487, 76);
+            this.textBoxNewNum.Location = new System.Drawing.Point(491, 76);
             this.textBoxNewNum.Name = "textBoxNewNum";
             this.textBoxNewNum.ReadOnly = true;
             this.textBoxNewNum.Size = new System.Drawing.Size(155, 26);
             this.textBoxNewNum.TabIndex = 11;
             this.textBoxNewNum.Text = "Добавить номер...";
-            this.textBoxNewNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxNewNum_MouseClick);
-            this.textBoxNewNum.TextChanged += new System.EventHandler(this.textBoxNewNum_TextChanged);
+            this.textBoxNewNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxNewNum_MouseClick);
+            this.textBoxNewNum.TextChanged += new System.EventHandler(this.TextBoxNewNum_TextChanged);
             // 
             // textBoxNewEmail
             // 
@@ -148,8 +153,8 @@ namespace WF_Kurs
             this.textBoxNewEmail.Size = new System.Drawing.Size(155, 26);
             this.textBoxNewEmail.TabIndex = 12;
             this.textBoxNewEmail.Text = "Добавить Email...";
-            this.textBoxNewEmail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxNewEmail_MouseClick);
-            this.textBoxNewEmail.TextChanged += new System.EventHandler(this.textBoxNewEmail_TextChanged);
+            this.textBoxNewEmail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxNewEmail_MouseClick);
+            this.textBoxNewEmail.TextChanged += new System.EventHandler(this.TextBoxNewEmail_TextChanged);
             // 
             // buttonAdd
             // 
@@ -159,7 +164,7 @@ namespace WF_Kurs
             this.buttonAdd.TabIndex = 13;
             this.buttonAdd.Text = "Добавить контакт";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // buttonDelete
             // 
@@ -169,7 +174,7 @@ namespace WF_Kurs
             this.buttonDelete.TabIndex = 14;
             this.buttonDelete.Text = "Удалить контакт";
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // buttonAcceptCh
             // 
@@ -180,7 +185,7 @@ namespace WF_Kurs
             this.buttonAcceptCh.Text = "Подтвердить";
             this.buttonAcceptCh.UseVisualStyleBackColor = true;
             this.buttonAcceptCh.Visible = false;
-            this.buttonAcceptCh.Click += new System.EventHandler(this.buttonAcceptCh_Click);
+            this.buttonAcceptCh.Click += new System.EventHandler(this.ButtonAcceptCh_Click);
             // 
             // buttonChange
             // 
@@ -190,7 +195,7 @@ namespace WF_Kurs
             this.buttonChange.TabIndex = 16;
             this.buttonChange.Text = "Редактировать";
             this.buttonChange.UseVisualStyleBackColor = true;
-            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
+            this.buttonChange.Click += new System.EventHandler(this.ButtonChange_Click);
             // 
             // buttonAcceptAdd
             // 
@@ -201,7 +206,7 @@ namespace WF_Kurs
             this.buttonAcceptAdd.Text = "Подтвердить";
             this.buttonAcceptAdd.UseVisualStyleBackColor = true;
             this.buttonAcceptAdd.Visible = false;
-            this.buttonAcceptAdd.Click += new System.EventHandler(this.buttonAcceptAdd_Click);
+            this.buttonAcceptAdd.Click += new System.EventHandler(this.ButtonAcceptAdd_Click);
             // 
             // Form1
             // 
