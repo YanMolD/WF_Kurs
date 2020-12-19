@@ -230,6 +230,7 @@ namespace WF_Kurs
             this.Controls.Add(this.textBoxAdress);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.listBox1);
+            this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
