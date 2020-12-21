@@ -41,6 +41,7 @@ namespace WF_Kurs
             form.Controls.Add(textBox);
             textBox.Visible = true;
             textBox.Location = Location;
+            textBox.Width = 105;
             textBox.Text = email;
         }
 

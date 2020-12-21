@@ -39,7 +39,7 @@ namespace WF_Kurs
             {
                 Number number_buf = new Number(textBoxNewNum.Text.Substring(0, 1), textBoxNewNum.Location, this);
                 if (Action)
-                    Contacts.AddNumber(number_buf, listBox1.SelectedIndex);
+                    Contacts.AddNumber(number_buf, listBox.SelectedIndex);
                 else
                     NewContact.AddNumber(number_buf);
                 textBoxNewNum.Text = "Добавить номер...";
@@ -59,11 +59,11 @@ namespace WF_Kurs
             {
                 Email email_buf = new Email(textBoxNewEmail.Text.Substring(0, 1), textBoxNewEmail.Location, this);
                 if (Action)
-                    Contacts.AddEmail(email_buf, listBox1.SelectedIndex);
+                    Contacts.AddEmail(email_buf, listBox.SelectedIndex);
                 else
                     NewContact.AddEmail(email_buf);
                 textBoxNewEmail.Text = "Добавить Email...";
-                textBoxNewEmail.Top += 22;
+                textBoxNewEmail.Top += 11;
             }
         }
 
@@ -71,8 +71,8 @@ namespace WF_Kurs
         {
             Action = false;
             NewContact = new Person("");
-            if (listBox1.SelectedIndex != -1)
-                Contacts.People[listBox1.SelectedIndex].NumEmVisibleSwitch();
+            if (listBox.SelectedIndex != -1)
+                Contacts.People[listBox.SelectedIndex].NumEmVisibleSwitch();
             textBoxName.ReadOnly = false;
             textBoxName.Text = "";
             textBoxAdress.ReadOnly = false;
@@ -92,19 +92,19 @@ namespace WF_Kurs
 
         private void ButtonChange_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
+            if (listBox.SelectedIndex != -1)
             {
                 Action = true;
                 textBoxName.ReadOnly = false;
-                textBoxName.Text = Contacts.People[listBox1.SelectedIndex].Name;
+                textBoxName.Text = Contacts.People[listBox.SelectedIndex].Name;
                 textBoxAdress.ReadOnly = false;
-                textBoxAdress.Text = Contacts.People[listBox1.SelectedIndex].Adress;
+                textBoxAdress.Text = Contacts.People[listBox.SelectedIndex].Adress;
                 textBoxDate.ReadOnly = false;
-                textBoxDate.Text = Contacts.People[listBox1.SelectedIndex].BDay;
+                textBoxDate.Text = Contacts.People[listBox.SelectedIndex].BDay;
                 textBoxNewEmail.ReadOnly = false;
-                textBoxNewEmail.Top = Contacts.People[listBox1.SelectedIndex].ListOfEmails.Last().textBox.Location.Y + 22;
+                textBoxNewEmail.Top = Contacts.People[listBox.SelectedIndex].ListOfEmails.Last().textBox.Location.Y + 22;
                 textBoxNewNum.ReadOnly = false;
-                textBoxNewNum.Top = Contacts.People[listBox1.SelectedIndex].ListOfNumbers.Last().textBox.Location.Y + 22; ;
+                textBoxNewNum.Top = Contacts.People[listBox.SelectedIndex].ListOfNumbers.Last().textBox.Location.Y + 22; ;
                 buttonAcceptAdd.Visible = true;
             }
         }
@@ -126,7 +126,7 @@ namespace WF_Kurs
                 textBoxNewNum.Top = textBoxAdress.Top + 22;
                 buttonAcceptAdd.Visible = false;
                 Contacts.AddNewContact(NewContact);
-                listBox1.Items.Add(Contacts.People.Last().Name);
+                listBox.Items.Add(Contacts.People.Last().Name);
             }
             else
             {
@@ -155,7 +155,7 @@ namespace WF_Kurs
             if (!Action)
                 NewContact.ChangeBDay(textBoxDate.Text);
             else
-                Contacts.People[listBox1.SelectedIndex].ChangeBDay(textBoxDate.Text);
+                Contacts.People[listBox.SelectedIndex].ChangeBDay(textBoxDate.Text);
         }
 
         private void TextBoxAdress_TextChanged(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace WF_Kurs
             if (!Action)
                 NewContact.ChangeAdress(textBoxDate.Text);
             else
-                Contacts.People[listBox1.SelectedIndex].ChangeAdress(textBoxDate.Text);
+                Contacts.People[listBox.SelectedIndex].ChangeAdress(textBoxDate.Text);
         }
     }
 }

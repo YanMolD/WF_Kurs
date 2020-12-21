@@ -28,7 +28,7 @@ namespace WF_Kurs
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox = new System.Windows.Forms.ListBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
@@ -46,16 +46,18 @@ namespace WF_Kurs
             this.buttonAcceptAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(13, 13);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(327, 164);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBox.FormattingEnabled = true;
+            this.listBox.ItemHeight = 20;
+            this.listBox.Location = new System.Drawing.Point(13, 13);
+            this.listBox.Name = "listBox";
+            this.listBox.ScrollAlwaysVisible = true;
+            this.listBox.Size = new System.Drawing.Size(327, 164);
+            this.listBox.TabIndex = 0;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // textBoxName
             // 
@@ -158,6 +160,7 @@ namespace WF_Kurs
             // 
             // buttonAdd
             // 
+            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAdd.Location = new System.Drawing.Point(13, 184);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(164, 39);
@@ -168,6 +171,7 @@ namespace WF_Kurs
             // 
             // buttonDelete
             // 
+            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonDelete.Location = new System.Drawing.Point(13, 229);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(164, 39);
@@ -178,6 +182,7 @@ namespace WF_Kurs
             // 
             // buttonAcceptCh
             // 
+            this.buttonAcceptCh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAcceptCh.Location = new System.Drawing.Point(183, 229);
             this.buttonAcceptCh.Name = "buttonAcceptCh";
             this.buttonAcceptCh.Size = new System.Drawing.Size(157, 39);
@@ -189,6 +194,7 @@ namespace WF_Kurs
             // 
             // buttonChange
             // 
+            this.buttonChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonChange.Location = new System.Drawing.Point(183, 184);
             this.buttonChange.Name = "buttonChange";
             this.buttonChange.Size = new System.Drawing.Size(157, 39);
@@ -199,6 +205,7 @@ namespace WF_Kurs
             // 
             // buttonAcceptAdd
             // 
+            this.buttonAcceptAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAcceptAdd.Location = new System.Drawing.Point(183, 229);
             this.buttonAcceptAdd.Name = "buttonAcceptAdd";
             this.buttonAcceptAdd.Size = new System.Drawing.Size(157, 39);
@@ -229,7 +236,7 @@ namespace WF_Kurs
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxAdress);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBox);
             this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -239,7 +246,7 @@ namespace WF_Kurs
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxAdress;
         private System.Windows.Forms.Label labelName;
