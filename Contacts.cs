@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace WF_Kurs
 {
@@ -26,7 +27,7 @@ namespace WF_Kurs
 
         public void Change_number(string new_number) => textBox.Text = new_number;
 
-        public string ForVcard() => "TEL;HOME:" + textBox.Text + "\n";
+        public string ForVcard() => "TEL;HOME;VOICE:" + textBox.Text + "\n";
 
         public override string ToString() => textBox.Text;
     }
@@ -45,11 +46,23 @@ namespace WF_Kurs
             textBox.Text = email;
         }
 
-        public bool CheckEmail() => Regex.IsMatch(textBox.Text, @"^([\w\d\.]+)@([\w\d]+)(\.(\w))$");
+        public bool CheckEmail()
+        {
+            try
+            {
+                MailAddress m = new MailAddress(textBox.Text);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
 
         public void ChangeEmail(string newEmail) => textBox.Text = newEmail;
 
-        public string ForVcard() => "TEL;HOME:" + textBox.Text + "\n";
+        public string ForVcard() => "EMAIL;TYPE=INTERNET:" + textBox.Text + "\n";
 
         public override string ToString() => textBox.Text;
     }
@@ -93,6 +106,7 @@ namespace WF_Kurs
 
         public void DeleteEmail(int index)
         {
+            ListOfEmails[index].textBox.Visible = false;
             ListOfEmails.RemoveAt(index);
             for (int i = index; i < ListOfEmails.Count; i++)
                 ListOfEmails[i].textBox.Top -= 11;
@@ -155,13 +169,12 @@ namespace WF_Kurs
             {
                 if (ListOfEmails[i].textBox.Text == "")
                     DeleteEmail(i);
+                else
+                {
+                    if (!ListOfEmails[i].CheckEmail())
+                        return false;
+                }
             }
-            for (int i = 0; i < ListOfNumbers.Count; i++)
-            {
-                if (!ListOfNumbers[i].Check_number())
-                    return false;
-            }
-
             for (int i = 0; i < ListOfNumbers.Count; i++)
             {
                 if (ListOfNumbers[i].textBox.Text == "")
@@ -177,16 +190,23 @@ namespace WF_Kurs
             return true;
         }
 
-        private bool CheckBDate() => Regex.IsMatch(BDay, @"^(00|0?[1-9]|[12][0-9]|3[01])[./-]([0]?[1-9]|[12][0-9]|[3][01])[./-]([0-9]{4}|[0-9]{2})$");
+        private bool CheckBDate() => Regex.IsMatch(BDay, @"^([0-9]{4})[\-](0?[1-9]|[12][0-9]|3[01])[\-]([0]?[1-9]|[1][0-2])$");
 
         public override string ToString()
         {
-            string buf = Name + "\n";
+            string buf = "BEGIN:VCARD\n";
+            buf += "VERSION:2.1\n";
+            buf += $"N:{Name}\n";
+            buf += $"FN:{Name}\n";
             for (int i = 0; i < ListOfNumbers.Count; i++)
-            {
-                buf += "    " + (i + 1) + ") ";
-                buf += ListOfNumbers[i];
-            }
+                buf += ListOfNumbers[i].ForVcard();
+            if (Adress != "")
+                buf += $"ADR;WORK;PREF;CHARSET=utf-8:;;{Adress};;;;Россия\nLABEL;WORK;PREF:{Adress}\n";
+            if (BDay != "")
+                buf += $"BDAY:{BDay.Substring(0, 4) + BDay.Substring(5, 2) + BDay.Substring(8, 2)}\n";
+            for (int i = 0; i < ListOfEmails.Count; i++)
+                buf += ListOfEmails[i].ForVcard();
+            buf += "END:VCARD";
             return buf;
         }
     }
