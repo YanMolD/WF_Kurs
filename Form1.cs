@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WF_Kurs
 {
@@ -76,7 +77,7 @@ namespace WF_Kurs
 
         private void TextBoxNewEmail_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxNewEmail.Text != "")
+            if (textBoxNewEmail.Text != "" && textBoxNewEmail.Text != "Добавить Email...")
             {
                 Email email_buf = new Email(textBoxNewEmail.Text.Substring(0, 1), textBoxNewEmail.Location, this);
                 if (Action)
@@ -84,7 +85,7 @@ namespace WF_Kurs
                 else
                     NewContact.AddEmail(email_buf);
                 textBoxNewEmail.Text = "Добавить Email...";
-                textBoxNewEmail.Top += 11;
+                textBoxNewEmail.Top += 22;
             }
         }
 
@@ -101,7 +102,7 @@ namespace WF_Kurs
             textBoxAdress.ReadOnly = false;
             textBoxAdress.Text = "";
             textBoxDate.ReadOnly = false;
-            textBoxDate.Text = "";
+            textBoxDate.Text = "YYYY-MM-DD";
             textBoxNewEmail.ReadOnly = false;
             textBoxNewEmail.Top = textBoxDate.Top + 22;
             textBoxNewNum.ReadOnly = false;
@@ -170,7 +171,7 @@ namespace WF_Kurs
                 textBoxAdress.ReadOnly = true;
                 textBoxAdress.Text = "";
                 textBoxDate.ReadOnly = true;
-                textBoxName.Text = "";
+                textBoxDate.Text = "";
                 textBoxNewEmail.ReadOnly = true;
                 textBoxNewEmail.Top = textBoxDate.Top + 22;
                 textBoxNewNum.ReadOnly = true;
@@ -206,20 +207,6 @@ namespace WF_Kurs
             }
         }
 
-        private void TextBoxDate_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (!textBoxDate.ReadOnly && textBoxDate.Text != "DD.MM.YYYY")
-            {
-                textBoxDate.Text = "";
-                textBoxDate.ForeColor = Color.Black;
-            }
-        }
-
-        private void TextBoxDate_TextChanged(object sender, EventArgs e)
-        {
-            NewContact.ChangeBDay(textBoxDate.Text);
-        }
-
         private void TextBoxAdress_TextChanged(object sender, EventArgs e)
         {
             NewContact.ChangeAdress(textBoxAdress.Text);
@@ -230,8 +217,30 @@ namespace WF_Kurs
             NewContact.ChangeName(textBoxName.Text);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void buttonVCard_Click(object sender, EventArgs e)
         {
+            if (listBox.SelectedIndex != -1)
+            {
+                saveFileDialog1.ShowDialog();
+                StreamWriter sw = new StreamWriter(saveFileDialog1.FileName + ".vcf");
+                sw.Write(Contacts.GetPerson(listBox.SelectedIndex));
+                sw.Close();
+            }
+        }
+
+        private void textBoxDate_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!textBoxDate.ReadOnly)
+                textBoxDate.Text = "";
+        }
+
+        private void TextBoxDate_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxDate.Text != "" && textBoxDate.Text != "YYYY-MM-DD")
+            {
+                textBoxDate.ForeColor = Color.Black;
+                NewContact.ChangeBDay(textBoxDate.Text);
+            }
         }
     }
 }
