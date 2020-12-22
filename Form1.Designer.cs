@@ -44,6 +44,8 @@ namespace WF_Kurs
             this.buttonAcceptCh = new System.Windows.Forms.Button();
             this.buttonChange = new System.Windows.Forms.Button();
             this.buttonAcceptAdd = new System.Windows.Forms.Button();
+            this.buttonVCard = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // listBox
@@ -131,8 +133,8 @@ namespace WF_Kurs
             this.textBoxDate.ReadOnly = true;
             this.textBoxDate.Size = new System.Drawing.Size(155, 26);
             this.textBoxDate.TabIndex = 9;
-            this.textBoxDate.Text = "DD.MM.YYYY";
-            this.textBoxDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxDate_MouseClick);
+            this.textBoxDate.Text = "YYYY-DD-MM";
+            this.textBoxDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxDate_MouseClick);
             this.textBoxDate.TextChanged += new System.EventHandler(this.TextBoxDate_TextChanged);
             // 
             // textBoxNewNum
@@ -216,12 +218,23 @@ namespace WF_Kurs
             this.buttonAcceptAdd.Visible = false;
             this.buttonAcceptAdd.Click += new System.EventHandler(this.ButtonAcceptAdd_Click);
             // 
+            // buttonVCard
+            // 
+            this.buttonVCard.Location = new System.Drawing.Point(13, 274);
+            this.buttonVCard.Name = "buttonVCard";
+            this.buttonVCard.Size = new System.Drawing.Size(327, 39);
+            this.buttonVCard.TabIndex = 18;
+            this.buttonVCard.Text = "Экспортировать контакт";
+            this.buttonVCard.UseVisualStyleBackColor = true;
+            this.buttonVCard.Click += new System.EventHandler(this.buttonVCard_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(960, 610);
+            this.Controls.Add(this.buttonVCard);
             this.Controls.Add(this.buttonAcceptAdd);
             this.Controls.Add(this.buttonChange);
             this.Controls.Add(this.buttonAcceptCh);
@@ -241,7 +254,6 @@ namespace WF_Kurs
             this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,6 +276,8 @@ namespace WF_Kurs
         private System.Windows.Forms.Button buttonAcceptCh;
         private System.Windows.Forms.Button buttonChange;
         private System.Windows.Forms.Button buttonAcceptAdd;
+        private System.Windows.Forms.Button buttonVCard;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
