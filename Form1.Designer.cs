@@ -67,6 +67,7 @@ namespace WF_Kurs
             this.textBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.textBoxName.Size = new System.Drawing.Size(155, 26);
             this.textBoxName.TabIndex = 1;
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // textBoxAdress
             // 
@@ -240,6 +241,7 @@ namespace WF_Kurs
             this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

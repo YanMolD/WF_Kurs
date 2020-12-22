@@ -75,6 +75,15 @@ namespace WF_Kurs
             ListOfEmails = new List<Email>();
         }
 
+        public Person(Person person)
+        {
+            Name = person.Name;
+            BDay = person.BDay;
+            Adress = person.Adress;
+            ListOfNumbers = person.ListOfNumbers;
+            ListOfEmails = person.ListOfEmails;
+        }
+
         public void DeleteNumber(int index)
         {
             ListOfNumbers.RemoveAt(index);
@@ -98,16 +107,44 @@ namespace WF_Kurs
             BDay = date;
         }
 
-        public void NumEmVisibleSwitch()
+        public void NumEmVisible()
         {
             for (int i = 0; i < ListOfNumbers.Count; i++)
             {
-                ListOfNumbers[i].textBox.Visible = !ListOfNumbers[i].textBox.Visible;
+                ListOfNumbers[i].textBox.Visible = true;
             }
             for (int i = 0; i < ListOfEmails.Count; i++)
             {
-                ListOfEmails[i].textBox.Visible = !ListOfEmails[i].textBox.Visible;
+                ListOfEmails[i].textBox.Visible = true;
             }
+        }
+
+        public void NumEmUnvisible()
+        {
+            for (int i = 0; i < ListOfNumbers.Count; i++)
+            {
+                ListOfNumbers[i].textBox.Visible = false;
+            }
+            for (int i = 0; i < ListOfEmails.Count; i++)
+            {
+                ListOfEmails[i].textBox.Visible = false;
+            }
+        }
+
+        public void NumEmReadonlyFalse()
+        {
+            for (int i = 0; i < ListOfNumbers.Count; i++)
+                ListOfNumbers[i].textBox.ReadOnly = false;
+            for (int i = 0; i < ListOfEmails.Count; i++)
+                ListOfEmails[i].textBox.ReadOnly = false;
+        }
+
+        public void NumEmReadonlyTrue()
+        {
+            for (int i = 0; i < ListOfNumbers.Count; i++)
+                ListOfNumbers[i].textBox.ReadOnly = true;
+            for (int i = 0; i < ListOfEmails.Count; i++)
+                ListOfEmails[i].textBox.ReadOnly = true;
         }
 
         public bool CheckPerson()
@@ -118,10 +155,13 @@ namespace WF_Kurs
             {
                 if (ListOfEmails[i].textBox.Text == "")
                     DeleteEmail(i);
-                else
-                    if (!ListOfNumbers[i].Check_number())
+            }
+            for (int i = 0; i < ListOfNumbers.Count; i++)
+            {
+                if (!ListOfNumbers[i].Check_number())
                     return false;
             }
+
             for (int i = 0; i < ListOfNumbers.Count; i++)
             {
                 if (ListOfNumbers[i].textBox.Text == "")
@@ -163,7 +203,16 @@ namespace WF_Kurs
 
         public void AddEmail(Email email, int index) => People[index].AddEmail(email);
 
-        public void DeletePerson(int index) => People.RemoveAt(index);
+        public void DeletePerson(int index, Form1 form)
+        {
+            for (int i = 0; i < People[index].ListOfNumbers.Count; i++)
+                form.Controls.Remove(People[index].ListOfNumbers[i].textBox);
+            for (int i = 0; i < People[index].ListOfEmails.Count; i++)
+                form.Controls.Remove(People[index].ListOfEmails[i].textBox);
+            People.RemoveAt(index);
+        }
+
+        public Person GetPerson(int index) => People[index];
 
         public override string ToString()
         {
