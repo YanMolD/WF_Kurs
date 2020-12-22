@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 namespace WF_Kurs
@@ -22,6 +23,15 @@ namespace WF_Kurs
         {
             InitializeComponent();
             Contacts = new ListOfContacts();
+            BinaryFormatter formatter = new BinaryFormatter();
+            string[] fileEntries = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.Contacts");
+            foreach (string item in fileEntries)
+            {
+                using (FileStream fs = new FileStream(item, FileMode.OpenOrCreate))
+                    Contacts = (ListOfContacts)formatter.Deserialize(fs);
+            }
+            for (int i = 0; i < Contacts.People.Count; i++)
+                listBox.Items.Add(Contacts.People[i].Name);
             Action = true;
             indexSave = 0;
         }
@@ -30,7 +40,7 @@ namespace WF_Kurs
         {
             if (listBox.SelectedIndex != -1)
             {
-                if (indexSave != listBox.SelectedIndex)
+                if (indexSave != listBox.SelectedIndex && indexSave != listBox.Items.Count)
                     Contacts.GetPerson(indexSave).NumEmVisible();
                 Contacts.GetPerson(listBox.SelectedIndex).NumEmVisible();
                 Contacts.GetPerson(listBox.SelectedIndex).NumEmReadonlyTrue();
@@ -154,7 +164,7 @@ namespace WF_Kurs
                 else
                     textBoxNewNum.Top = textBoxAdress.Top + 22;
                 textBoxNewNum.ReadOnly = false;
-                buttonAcceptAdd.Visible = true;
+                buttonAcceptCh.Visible = true;
                 NewContact = new Person(Contacts.GetPerson(listBox.SelectedIndex));
             }
         }
@@ -240,6 +250,16 @@ namespace WF_Kurs
             {
                 textBoxDate.ForeColor = Color.Black;
                 NewContact.ChangeBDay(textBoxDate.Text);
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            File.Delete(Directory.GetCurrentDirectory() + $"/Contacts.Contacts");
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream(Directory.GetCurrentDirectory() + $"/Contacts.Contacts", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, Contacts);
             }
         }
     }

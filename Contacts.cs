@@ -9,6 +9,7 @@ using System.Net.Mail;
 
 namespace WF_Kurs
 {
+    [Serializable]
     internal struct Number
     {
         public System.Windows.Forms.TextBox textBox;
@@ -32,6 +33,7 @@ namespace WF_Kurs
         public override string ToString() => textBox.Text;
     }
 
+    [Serializable]
     internal struct Email
     {
         public System.Windows.Forms.TextBox textBox;
@@ -67,6 +69,7 @@ namespace WF_Kurs
         public override string ToString() => textBox.Text;
     }
 
+    [Serializable]
     internal struct Person
     {
         public string Name;
@@ -211,6 +214,7 @@ namespace WF_Kurs
         }
     }
 
+    [Serializable]
     internal class ListOfContacts
     {
         public readonly List<Person> People;
