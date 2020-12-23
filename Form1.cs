@@ -38,7 +38,7 @@ namespace WF_Kurs
         {
             if (listBox.SelectedIndex != -1)
             {
-                if (buttonAcceptCh.Visible)
+                if (buttonAcceptCh.Visible && buttonAcceptAdd.Visible)
                 {
                     ReadOnlySwitch();
                     buttonAcceptAdd.Visible = false;
