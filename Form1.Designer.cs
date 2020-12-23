@@ -50,6 +50,8 @@ namespace WF_Kurs
             this.listBoxEmails = new System.Windows.Forms.ListBox();
             this.buttonAddNumber = new System.Windows.Forms.Button();
             this.buttonAddEmail = new System.Windows.Forms.Button();
+            this.buttonCancelAddNum = new System.Windows.Forms.Button();
+            this.buttonCancelAddEm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox
@@ -143,14 +145,13 @@ namespace WF_Kurs
             // 
             // textBoxNewNum
             // 
-            this.textBoxNewNum.Location = new System.Drawing.Point(491, 190);
+            this.textBoxNewNum.Location = new System.Drawing.Point(491, 184);
             this.textBoxNewNum.Name = "textBoxNewNum";
             this.textBoxNewNum.ReadOnly = true;
             this.textBoxNewNum.Size = new System.Drawing.Size(155, 26);
             this.textBoxNewNum.TabIndex = 11;
             this.textBoxNewNum.Text = "Добавить номер...";
             this.textBoxNewNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxNewNum_MouseClick);
-            this.textBoxNewNum.TextChanged += new System.EventHandler(this.textBoxNewNum_TextChanged);
             // 
             // textBoxNewEmail
             // 
@@ -161,7 +162,6 @@ namespace WF_Kurs
             this.textBoxNewEmail.TabIndex = 12;
             this.textBoxNewEmail.Text = "Добавить Email...";
             this.textBoxNewEmail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxNewEmail_MouseClick);
-            this.textBoxNewEmail.TextChanged += new System.EventHandler(this.TextBoxNewEmail_TextChanged);
             // 
             // buttonAdd
             // 
@@ -254,17 +254,17 @@ namespace WF_Kurs
             // 
             // buttonAddNumber
             // 
-            this.buttonAddNumber.Location = new System.Drawing.Point(489, 226);
+            this.buttonAddNumber.Location = new System.Drawing.Point(489, 216);
             this.buttonAddNumber.Name = "buttonAddNumber";
             this.buttonAddNumber.Size = new System.Drawing.Size(160, 37);
             this.buttonAddNumber.TabIndex = 21;
             this.buttonAddNumber.Text = "Подтвердить";
             this.buttonAddNumber.UseVisualStyleBackColor = true;
-            this.buttonAddNumber.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAddNumber.Click += new System.EventHandler(this.buttonAddNum_Click);
             // 
             // buttonAddEmail
             // 
-            this.buttonAddEmail.Location = new System.Drawing.Point(781, 191);
+            this.buttonAddEmail.Location = new System.Drawing.Point(778, 187);
             this.buttonAddEmail.Name = "buttonAddEmail";
             this.buttonAddEmail.Size = new System.Drawing.Size(160, 37);
             this.buttonAddEmail.TabIndex = 22;
@@ -272,12 +272,36 @@ namespace WF_Kurs
             this.buttonAddEmail.UseVisualStyleBackColor = true;
             this.buttonAddEmail.Click += new System.EventHandler(this.button2_Click);
             // 
+            // buttonCancelAddNum
+            // 
+            this.buttonCancelAddNum.Location = new System.Drawing.Point(489, 259);
+            this.buttonCancelAddNum.Name = "buttonCancelAddNum";
+            this.buttonCancelAddNum.Size = new System.Drawing.Size(160, 37);
+            this.buttonCancelAddNum.TabIndex = 23;
+            this.buttonCancelAddNum.Text = "Отмена";
+            this.buttonCancelAddNum.UseVisualStyleBackColor = true;
+            this.buttonCancelAddNum.Visible = false;
+            this.buttonCancelAddNum.Click += new System.EventHandler(this.buttonCancelAddNum_Click);
+            // 
+            // buttonCancelAddEm
+            // 
+            this.buttonCancelAddEm.Location = new System.Drawing.Point(778, 230);
+            this.buttonCancelAddEm.Name = "buttonCancelAddEm";
+            this.buttonCancelAddEm.Size = new System.Drawing.Size(160, 37);
+            this.buttonCancelAddEm.TabIndex = 24;
+            this.buttonCancelAddEm.Text = "Отмена";
+            this.buttonCancelAddEm.UseVisualStyleBackColor = true;
+            this.buttonCancelAddEm.Visible = false;
+            this.buttonCancelAddEm.Click += new System.EventHandler(this.buttonCancelAddEm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(960, 610);
+            this.Controls.Add(this.buttonCancelAddEm);
+            this.Controls.Add(this.buttonCancelAddNum);
             this.Controls.Add(this.buttonAddEmail);
             this.Controls.Add(this.buttonAddNumber);
             this.Controls.Add(this.listBoxEmails);
@@ -331,6 +355,8 @@ namespace WF_Kurs
         private System.Windows.Forms.ListBox listBoxEmails;
         private System.Windows.Forms.Button buttonAddNumber;
         private System.Windows.Forms.Button buttonAddEmail;
+        private System.Windows.Forms.Button buttonCancelAddNum;
+        private System.Windows.Forms.Button buttonCancelAddEm;
     }
 }
 

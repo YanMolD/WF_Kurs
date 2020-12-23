@@ -40,11 +40,7 @@ namespace WF_Kurs
             {
                 if (buttonAcceptCh.Visible)
                 {
-                    textBoxName.ReadOnly = true;
-                    textBoxAdress.ReadOnly = true;
-                    textBoxDate.ReadOnly = true;
-                    textBoxNewEmail.ReadOnly = true;
-                    textBoxNewNum.ReadOnly = true;
+                    ReadOnlySwitch();
                     buttonAcceptAdd.Visible = false;
                     buttonAcceptCh.Visible = false;
                 }
@@ -72,25 +68,15 @@ namespace WF_Kurs
                 textBoxNewEmail.Text = "";
         }
 
-        private void TextBoxNewEmail_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             NewContact = new Person("");
-            textBoxName.ReadOnly = false;
-            textBoxName.Text = "";
-            textBoxAdress.ReadOnly = false;
-            textBoxAdress.Text = "";
-            textBoxDate.ReadOnly = false;
+            if (textBoxName.ReadOnly)
+                ReadOnlySwitch();
+            ClearBoxes();
             textBoxDate.Text = "YYYY-MM-DD";
-            textBoxNewEmail.ReadOnly = false;
-            textBoxNewNum.ReadOnly = false;
             buttonAcceptAdd.Visible = true;
             buttonAcceptCh.Visible = false;
-            listBoxNumbers.Items.Clear();
-            listBoxEmails.Items.Clear();
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -99,14 +85,9 @@ namespace WF_Kurs
             {
                 Contacts.People.RemoveAt(listBox.SelectedIndex);
                 listBox.Items.RemoveAt(listBox.SelectedIndex);
-                textBoxName.ReadOnly = true;
-                textBoxName.Text = "";
-                textBoxAdress.ReadOnly = true;
-                textBoxAdress.Text = "";
-                textBoxDate.ReadOnly = true;
-                textBoxDate.Text = "";
-                textBoxNewEmail.ReadOnly = true;
-                textBoxNewNum.ReadOnly = true;
+                ClearBoxes();
+                if (!textBoxName.ReadOnly)
+                    ReadOnlySwitch();
                 buttonAcceptAdd.Visible = false;
                 buttonAcceptCh.Visible = false;
             }
@@ -116,14 +97,11 @@ namespace WF_Kurs
         {
             if (listBox.SelectedIndex != -1)
             {
-                textBoxName.ReadOnly = false;
+                if (textBoxName.ReadOnly)
+                    ReadOnlySwitch();
                 textBoxName.Text = Contacts.GetPerson(listBox.SelectedIndex).Name;
-                textBoxAdress.ReadOnly = false;
                 textBoxAdress.Text = Contacts.GetPerson(listBox.SelectedIndex).Adress;
-                textBoxDate.ReadOnly = false;
                 textBoxDate.Text = Contacts.GetPerson(listBox.SelectedIndex).BDay;
-                textBoxNewEmail.ReadOnly = false;
-                textBoxNewNum.ReadOnly = false;
                 buttonAcceptCh.Visible = true;
                 NewContact = new Person(Contacts.GetPerson(listBox.SelectedIndex));
             }
@@ -131,7 +109,7 @@ namespace WF_Kurs
 
         private void ButtonAcceptAdd_Click(object sender, EventArgs e)
         {
-            if (NewContact.CheckPerson())
+            if (CheckPerson(NewContact))
             {
                 for (int i = 0; i < listBoxNumbers.Items.Count; i++)
                 {
@@ -145,14 +123,8 @@ namespace WF_Kurs
                 }
                 Contacts.AddNewContact(NewContact);
                 listBox.Items.Add(Contacts.People.Last().Name);
-                textBoxName.ReadOnly = true;
-                textBoxName.Text = "";
-                textBoxAdress.ReadOnly = true;
-                textBoxAdress.Text = "";
-                textBoxDate.ReadOnly = true;
-                textBoxDate.Text = "";
-                textBoxNewEmail.ReadOnly = true;
-                textBoxNewNum.ReadOnly = true;
+                ReadOnlySwitch();
+                ClearBoxes();
                 buttonAcceptAdd.Visible = false;
                 NewContact = new Person("");
             }
@@ -165,7 +137,7 @@ namespace WF_Kurs
 
         private void ButtonAcceptCh_Click(object sender, EventArgs e)
         {
-            if (NewContact.CheckPerson())
+            if (CheckPerson(NewContact))
             {
                 NewContact.ListOfEmails = new List<Email>();
                 NewContact.ListOfNumbers = new List<Number>();
@@ -181,14 +153,8 @@ namespace WF_Kurs
                 }
                 Contacts.People.Insert(listBox.SelectedIndex, NewContact);
                 Contacts.DeletePerson(listBox.SelectedIndex + 1);
-                textBoxName.ReadOnly = true;
-                textBoxName.Text = "";
-                textBoxAdress.ReadOnly = true;
-                textBoxAdress.Text = "";
-                textBoxDate.ReadOnly = true;
-                textBoxDate.Text = "";
-                textBoxNewEmail.ReadOnly = true;
-                textBoxNewNum.ReadOnly = true;
+                ReadOnlySwitch();
+                ClearBoxes();
                 buttonAcceptAdd.Visible = false;
                 buttonAcceptCh.Visible = false;
                 NewContact = new Person("");
@@ -241,7 +207,7 @@ namespace WF_Kurs
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAddNum_Click(object sender, EventArgs e)
         {
             if (Check_number(textBoxNewNum.Text) || (textBoxNewNum.Text == "" && !listBoxNumbers.Enabled))
             {
@@ -258,6 +224,7 @@ namespace WF_Kurs
                     }
                 }
                 textBoxNewNum.Text = "Добавить номер...";
+                buttonCancelAddNum.Visible = false;
                 listBoxNumbers.Enabled = true;
             }
         }
@@ -279,13 +246,75 @@ namespace WF_Kurs
                     }
                 }
                 textBoxNewEmail.Text = "Добавить Email...";
+                buttonCancelAddEm.Visible = false;
                 listBoxEmails.Enabled = true;
             }
         }
 
-        private bool Check_number(string number) => Regex.IsMatch(number, @"^[+][\d]+$") || Regex.IsMatch(number, @"^[\d]+$");
+        private void listBoxNumbers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!textBoxNewNum.ReadOnly && listBoxNumbers.SelectedIndex != -1)
+            {
+                textBoxNewNum.Text = listBoxNumbers.Items[listBoxNumbers.SelectedIndex].ToString();
+                listBoxNumbers.Enabled = false;
+                buttonCancelAddNum.Visible = true;
+            }
+        }
 
-        public bool CheckEmail(string email)
+        private void listBoxEmails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!textBoxNewEmail.ReadOnly && listBoxEmails.SelectedIndex != -1)
+            {
+                textBoxNewEmail.Text = listBoxEmails.Items[listBoxEmails.SelectedIndex].ToString();
+                listBoxEmails.Enabled = false;
+                buttonCancelAddEm.Visible = true;
+            }
+        }
+
+        private void buttonCancelAddNum_Click(object sender, EventArgs e)
+        {
+            textBoxNewNum.Text = "Добавить номер...";
+            buttonCancelAddNum.Visible = false;
+            listBoxNumbers.Enabled = true;
+        }
+
+        private void buttonCancelAddEm_Click(object sender, EventArgs e)
+        {
+            textBoxNewEmail.Text = "Добавить Email...";
+            buttonCancelAddEm.Visible = false;
+            listBoxEmails.Enabled = true;
+        }
+
+        private void ReadOnlySwitch()
+        {
+            textBoxAdress.ReadOnly = !textBoxAdress.ReadOnly;
+            textBoxDate.ReadOnly = !textBoxDate.ReadOnly;
+            textBoxName.ReadOnly = !textBoxName.ReadOnly;
+            textBoxNewEmail.ReadOnly = !textBoxNewEmail.ReadOnly;
+            textBoxNewNum.ReadOnly = !textBoxNewNum.ReadOnly;
+        }
+
+        private void ClearBoxes()
+        {
+            textBoxName.Text = "";
+            textBoxAdress.Text = "";
+            textBoxDate.Text = "";
+            listBoxNumbers.Items.Clear();
+            listBoxEmails.Items.Clear();
+        }
+
+        private static bool CheckPerson(Person person)
+        {
+            if (person.Name == "")
+                return false;
+            if (!CheckBDate(person.BDay) && person.BDay != "")
+                return false;
+            return true;
+        }
+
+        private static bool CheckBDate(string BDay) => Regex.IsMatch(BDay, @"^([0-9]{4})[\-]([0]?[1-9]|[1][0-2])[\-](0?[1-9]|[12][0-9]|3[01])$");
+
+        private static bool CheckEmail(string email)
         {
             if (email == "")
                 return false;
@@ -300,26 +329,6 @@ namespace WF_Kurs
             }
         }
 
-        private void listBoxNumbers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!textBoxNewNum.ReadOnly && listBoxNumbers.SelectedIndex != -1)
-            {
-                textBoxNewNum.Text = listBoxNumbers.Items[listBoxNumbers.SelectedIndex].ToString();
-                listBoxNumbers.Enabled = false;
-            }
-        }
-
-        private void listBoxEmails_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!textBoxNewEmail.ReadOnly && listBoxEmails.SelectedIndex != -1)
-            {
-                textBoxNewEmail.Text = listBoxEmails.Items[listBoxEmails.SelectedIndex].ToString();
-                listBoxEmails.Enabled = false;
-            }
-        }
-
-        private void textBoxNewNum_TextChanged(object sender, EventArgs e)
-        {
-        }
+        private static bool Check_number(string number) => Regex.IsMatch(number, @"^[+][\d]+$") || Regex.IsMatch(number, @"^[\d]+$");
     }
 }

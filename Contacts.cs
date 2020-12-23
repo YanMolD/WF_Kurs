@@ -83,17 +83,6 @@ namespace WF_Kurs
 
         public void ChangeBDay(string date) => BDay = date;
 
-        public bool CheckPerson()
-        {
-            if (Name == "")
-                return false;
-            if (!CheckBDate() && BDay != "")
-                return false;
-            return true;
-        }
-
-        private bool CheckBDate() => Regex.IsMatch(BDay, @"^([0-9]{4})[\-]([0]?[1-9]|[1][0-2])[\-](0?[1-9]|[12][0-9]|3[01])$");
-
         public override string ToString()
         {
             string buf = "BEGIN:VCARD\n";
