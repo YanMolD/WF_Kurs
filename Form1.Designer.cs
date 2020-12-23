@@ -254,9 +254,9 @@ namespace WF_Kurs
             // 
             // buttonAddNumber
             // 
-            this.buttonAddNumber.Location = new System.Drawing.Point(491, 222);
+            this.buttonAddNumber.Location = new System.Drawing.Point(489, 226);
             this.buttonAddNumber.Name = "buttonAddNumber";
-            this.buttonAddNumber.Size = new System.Drawing.Size(155, 37);
+            this.buttonAddNumber.Size = new System.Drawing.Size(160, 37);
             this.buttonAddNumber.TabIndex = 21;
             this.buttonAddNumber.Text = "Подтвердить";
             this.buttonAddNumber.UseVisualStyleBackColor = true;
@@ -264,9 +264,9 @@ namespace WF_Kurs
             // 
             // buttonAddEmail
             // 
-            this.buttonAddEmail.Location = new System.Drawing.Point(783, 187);
+            this.buttonAddEmail.Location = new System.Drawing.Point(781, 191);
             this.buttonAddEmail.Name = "buttonAddEmail";
-            this.buttonAddEmail.Size = new System.Drawing.Size(155, 37);
+            this.buttonAddEmail.Size = new System.Drawing.Size(160, 37);
             this.buttonAddEmail.TabIndex = 22;
             this.buttonAddEmail.Text = "Подтвердить";
             this.buttonAddEmail.UseVisualStyleBackColor = true;
