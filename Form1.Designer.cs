@@ -46,6 +46,10 @@ namespace WF_Kurs
             this.buttonAcceptAdd = new System.Windows.Forms.Button();
             this.buttonVCard = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.listBoxNumbers = new System.Windows.Forms.ListBox();
+            this.listBoxEmails = new System.Windows.Forms.ListBox();
+            this.buttonAddNumber = new System.Windows.Forms.Button();
+            this.buttonAddEmail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox
@@ -139,20 +143,18 @@ namespace WF_Kurs
             // 
             // textBoxNewNum
             // 
-            this.textBoxNewNum.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxNewNum.Location = new System.Drawing.Point(491, 76);
+            this.textBoxNewNum.Location = new System.Drawing.Point(491, 190);
             this.textBoxNewNum.Name = "textBoxNewNum";
             this.textBoxNewNum.ReadOnly = true;
             this.textBoxNewNum.Size = new System.Drawing.Size(155, 26);
             this.textBoxNewNum.TabIndex = 11;
             this.textBoxNewNum.Text = "Добавить номер...";
             this.textBoxNewNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxNewNum_MouseClick);
-            this.textBoxNewNum.TextChanged += new System.EventHandler(this.TextBoxNewNum_TextChanged);
+            this.textBoxNewNum.TextChanged += new System.EventHandler(this.textBoxNewNum_TextChanged);
             // 
             // textBoxNewEmail
             // 
-            this.textBoxNewEmail.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxNewEmail.Location = new System.Drawing.Point(783, 45);
+            this.textBoxNewEmail.Location = new System.Drawing.Point(783, 155);
             this.textBoxNewEmail.Name = "textBoxNewEmail";
             this.textBoxNewEmail.ReadOnly = true;
             this.textBoxNewEmail.Size = new System.Drawing.Size(155, 26);
@@ -228,12 +230,58 @@ namespace WF_Kurs
             this.buttonVCard.UseVisualStyleBackColor = true;
             this.buttonVCard.Click += new System.EventHandler(this.buttonVCard_Click);
             // 
+            // listBoxNumbers
+            // 
+            this.listBoxNumbers.FormattingEnabled = true;
+            this.listBoxNumbers.HorizontalScrollbar = true;
+            this.listBoxNumbers.ItemHeight = 20;
+            this.listBoxNumbers.Location = new System.Drawing.Point(491, 74);
+            this.listBoxNumbers.Name = "listBoxNumbers";
+            this.listBoxNumbers.Size = new System.Drawing.Size(155, 104);
+            this.listBoxNumbers.TabIndex = 19;
+            this.listBoxNumbers.SelectedIndexChanged += new System.EventHandler(this.listBoxNumbers_SelectedIndexChanged);
+            // 
+            // listBoxEmails
+            // 
+            this.listBoxEmails.FormattingEnabled = true;
+            this.listBoxEmails.HorizontalScrollbar = true;
+            this.listBoxEmails.ItemHeight = 20;
+            this.listBoxEmails.Location = new System.Drawing.Point(783, 45);
+            this.listBoxEmails.Name = "listBoxEmails";
+            this.listBoxEmails.Size = new System.Drawing.Size(155, 104);
+            this.listBoxEmails.TabIndex = 20;
+            this.listBoxEmails.SelectedIndexChanged += new System.EventHandler(this.listBoxEmails_SelectedIndexChanged);
+            // 
+            // buttonAddNumber
+            // 
+            this.buttonAddNumber.Location = new System.Drawing.Point(491, 222);
+            this.buttonAddNumber.Name = "buttonAddNumber";
+            this.buttonAddNumber.Size = new System.Drawing.Size(155, 37);
+            this.buttonAddNumber.TabIndex = 21;
+            this.buttonAddNumber.Text = "Подтвердить";
+            this.buttonAddNumber.UseVisualStyleBackColor = true;
+            this.buttonAddNumber.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonAddEmail
+            // 
+            this.buttonAddEmail.Location = new System.Drawing.Point(783, 187);
+            this.buttonAddEmail.Name = "buttonAddEmail";
+            this.buttonAddEmail.Size = new System.Drawing.Size(155, 37);
+            this.buttonAddEmail.TabIndex = 22;
+            this.buttonAddEmail.Text = "Подтвердить";
+            this.buttonAddEmail.UseVisualStyleBackColor = true;
+            this.buttonAddEmail.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(960, 610);
+            this.Controls.Add(this.buttonAddEmail);
+            this.Controls.Add(this.buttonAddNumber);
+            this.Controls.Add(this.listBoxEmails);
+            this.Controls.Add(this.listBoxNumbers);
             this.Controls.Add(this.buttonVCard);
             this.Controls.Add(this.buttonAcceptAdd);
             this.Controls.Add(this.buttonChange);
@@ -279,6 +327,10 @@ namespace WF_Kurs
         private System.Windows.Forms.Button buttonAcceptAdd;
         private System.Windows.Forms.Button buttonVCard;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ListBox listBoxNumbers;
+        private System.Windows.Forms.ListBox listBoxEmails;
+        private System.Windows.Forms.Button buttonAddNumber;
+        private System.Windows.Forms.Button buttonAddEmail;
     }
 }
 
