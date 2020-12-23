@@ -5,68 +5,41 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.Net.Mail;
 
 namespace WF_Kurs
 {
     [Serializable]
     internal struct Number
     {
-        public System.Windows.Forms.TextBox textBox;
+        public string number;
 
-        public Number(string number, Point Location, Form1 form)
+        public Number(string number)
         {
-            textBox = new System.Windows.Forms.TextBox();
-            form.Controls.Add(textBox);
-            textBox.Visible = true;
-            textBox.Location = Location;
-            textBox.Width = 105;
-            textBox.Text = number;
+            this.number = number;
         }
 
-        public bool Check_number() => Regex.IsMatch(textBox.Text, @"^[+][\d]+$") || Regex.IsMatch(textBox.Text, @"^[\d]+$");
+        public void Change_number(string new_number) => number = new_number;
 
-        public void Change_number(string new_number) => textBox.Text = new_number;
+        public string ForVcard() => "TEL;HOME;VOICE:" + number + "\n";
 
-        public string ForVcard() => "TEL;HOME;VOICE:" + textBox.Text + "\n";
-
-        public override string ToString() => textBox.Text;
+        public override string ToString() => number;
     }
 
     [Serializable]
     internal struct Email
     {
-        public System.Windows.Forms.TextBox textBox;
+        public string email;
 
-        public Email(string email, Point Location, Form1 form)
+        public Email(string email)
         {
-            textBox = new System.Windows.Forms.TextBox();
-            form.Controls.Add(textBox);
-            textBox.Visible = true;
-            textBox.Location = Location;
-            textBox.Width = 105;
-            textBox.Text = email;
+            this.email = email;
         }
 
-        public bool CheckEmail()
-        {
-            try
-            {
-                MailAddress m = new MailAddress(textBox.Text);
+        public void ChangeEmail(string newEmail) => email = newEmail;
 
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
+        public string ForVcard() => "EMAIL;TYPE=INTERNET:" + email + "\n";
 
-        public void ChangeEmail(string newEmail) => textBox.Text = newEmail;
-
-        public string ForVcard() => "EMAIL;TYPE=INTERNET:" + textBox.Text + "\n";
-
-        public override string ToString() => textBox.Text;
+        public override string ToString() => email;
     }
 
     [Serializable]
@@ -100,100 +73,26 @@ namespace WF_Kurs
             ListOfEmails = person.ListOfEmails;
         }
 
-        public void DeleteNumber(int index)
-        {
-            ListOfNumbers.RemoveAt(index);
-            for (int i = index; i < ListOfNumbers.Count; i++)
-                ListOfNumbers[i].textBox.Top -= 11;
-        }
+        public void DeleteNumber(int index) => ListOfNumbers.RemoveAt(index);
 
-        public void DeleteEmail(int index)
-        {
-            ListOfEmails[index].textBox.Visible = false;
-            ListOfEmails.RemoveAt(index);
-            for (int i = index; i < ListOfEmails.Count; i++)
-                ListOfEmails[i].textBox.Top -= 11;
-        }
+        public void DeleteEmail(int index) => ListOfEmails.RemoveAt(index);
 
         public void ChangeName(string Name) => this.Name = Name;
 
         public void ChangeAdress(string Adress) => this.Adress = Adress;
 
-        public void ChangeBDay(string date)
-        {
-            BDay = date;
-        }
-
-        public void NumEmVisible()
-        {
-            for (int i = 0; i < ListOfNumbers.Count; i++)
-            {
-                ListOfNumbers[i].textBox.Visible = true;
-            }
-            for (int i = 0; i < ListOfEmails.Count; i++)
-            {
-                ListOfEmails[i].textBox.Visible = true;
-            }
-        }
-
-        public void NumEmUnvisible()
-        {
-            for (int i = 0; i < ListOfNumbers.Count; i++)
-            {
-                ListOfNumbers[i].textBox.Visible = false;
-            }
-            for (int i = 0; i < ListOfEmails.Count; i++)
-            {
-                ListOfEmails[i].textBox.Visible = false;
-            }
-        }
-
-        public void NumEmReadonlyFalse()
-        {
-            for (int i = 0; i < ListOfNumbers.Count; i++)
-                ListOfNumbers[i].textBox.ReadOnly = false;
-            for (int i = 0; i < ListOfEmails.Count; i++)
-                ListOfEmails[i].textBox.ReadOnly = false;
-        }
-
-        public void NumEmReadonlyTrue()
-        {
-            for (int i = 0; i < ListOfNumbers.Count; i++)
-                ListOfNumbers[i].textBox.ReadOnly = true;
-            for (int i = 0; i < ListOfEmails.Count; i++)
-                ListOfEmails[i].textBox.ReadOnly = true;
-        }
+        public void ChangeBDay(string date) => BDay = date;
 
         public bool CheckPerson()
         {
             if (Name == "")
                 return false;
-            for (int i = 0; i < ListOfEmails.Count; i++)
-            {
-                if (ListOfEmails[i].textBox.Text == "")
-                    DeleteEmail(i);
-                else
-                {
-                    if (!ListOfEmails[i].CheckEmail())
-                        return false;
-                }
-            }
-            for (int i = 0; i < ListOfNumbers.Count; i++)
-            {
-                if (ListOfNumbers[i].textBox.Text == "")
-                    DeleteNumber(i);
-                else
-                {
-                    if (!ListOfNumbers[i].Check_number())
-                        return false;
-                }
-            }
             if (!CheckBDate() && BDay != "")
                 return false;
             return true;
         }
 
-        private bool CheckBDate() => Regex.IsMatch(BDay, @"^([0-9]{4})[\-](0?[1-9]|[12][0-9]|3[01])[\-]([0]?[1-9]|[1][0-2])$");
+        private bool CheckBDate() => Regex.IsMatch(BDay, @"^([0-9]{4})[\-]([0]?[1-9]|[1][0-2])[\-](0?[1-9]|[12][0-9]|3[01])$");
 
         public override string ToString()
         {
@@ -227,12 +126,8 @@ namespace WF_Kurs
 
         public void AddEmail(Email email, int index) => People[index].AddEmail(email);
 
-        public void DeletePerson(int index, Form1 form)
+        public void DeletePerson(int index)
         {
-            for (int i = 0; i < People[index].ListOfNumbers.Count; i++)
-                form.Controls.Remove(People[index].ListOfNumbers[i].textBox);
-            for (int i = 0; i < People[index].ListOfEmails.Count; i++)
-                form.Controls.Remove(People[index].ListOfEmails[i].textBox);
             People.RemoveAt(index);
         }
 
