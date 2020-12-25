@@ -1,6 +1,6 @@
 namespace WF_Kurs
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace WF_Kurs
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.listBoxContacts = new System.Windows.Forms.ListBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@ namespace WF_Kurs
             this.buttonChange = new System.Windows.Forms.Button();
             this.buttonAcceptAdd = new System.Windows.Forms.Button();
             this.buttonVCard = new System.Windows.Forms.Button();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.listBoxNumbers = new System.Windows.Forms.ListBox();
             this.listBoxEmails = new System.Windows.Forms.ListBox();
             this.buttonAddNumber = new System.Windows.Forms.Button();
@@ -54,18 +54,18 @@ namespace WF_Kurs
             this.buttonCancelAddEm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox
+            // listBoxContacts
             // 
-            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxContacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 20;
-            this.listBox.Location = new System.Drawing.Point(13, 13);
-            this.listBox.Name = "listBox";
-            this.listBox.ScrollAlwaysVisible = true;
-            this.listBox.Size = new System.Drawing.Size(327, 164);
-            this.listBox.TabIndex = 0;
-            this.listBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.listBoxContacts.FormattingEnabled = true;
+            this.listBoxContacts.ItemHeight = 20;
+            this.listBoxContacts.Location = new System.Drawing.Point(13, 13);
+            this.listBoxContacts.Name = "listBoxContacts";
+            this.listBoxContacts.ScrollAlwaysVisible = true;
+            this.listBoxContacts.Size = new System.Drawing.Size(327, 164);
+            this.listBoxContacts.TabIndex = 0;
+            this.listBoxContacts.SelectedIndexChanged += new System.EventHandler(this.ListBoxContacts_SelectedIndexChanged);
             // 
             // textBoxName
             // 
@@ -75,7 +75,7 @@ namespace WF_Kurs
             this.textBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.textBoxName.Size = new System.Drawing.Size(155, 26);
             this.textBoxName.TabIndex = 1;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            this.textBoxName.TextChanged += new System.EventHandler(this.TextBoxName_TextChanged);
             // 
             // textBoxAdress
             // 
@@ -140,7 +140,7 @@ namespace WF_Kurs
             this.textBoxDate.Size = new System.Drawing.Size(155, 26);
             this.textBoxDate.TabIndex = 9;
             this.textBoxDate.Text = "YYYY-DD-MM";
-            this.textBoxDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxDate_MouseClick);
+            this.textBoxDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxDate_MouseClick);
             this.textBoxDate.TextChanged += new System.EventHandler(this.TextBoxDate_TextChanged);
             // 
             // textBoxNewNum
@@ -228,7 +228,7 @@ namespace WF_Kurs
             this.buttonVCard.TabIndex = 18;
             this.buttonVCard.Text = "Экспортировать контакт";
             this.buttonVCard.UseVisualStyleBackColor = true;
-            this.buttonVCard.Click += new System.EventHandler(this.buttonVCard_Click);
+            this.buttonVCard.Click += new System.EventHandler(this.ButtonVCard_Click);
             // 
             // listBoxNumbers
             // 
@@ -239,7 +239,7 @@ namespace WF_Kurs
             this.listBoxNumbers.Name = "listBoxNumbers";
             this.listBoxNumbers.Size = new System.Drawing.Size(155, 104);
             this.listBoxNumbers.TabIndex = 19;
-            this.listBoxNumbers.SelectedIndexChanged += new System.EventHandler(this.listBoxNumbers_SelectedIndexChanged);
+            this.listBoxNumbers.SelectedIndexChanged += new System.EventHandler(this.ListBoxNumbers_SelectedIndexChanged);
             // 
             // listBoxEmails
             // 
@@ -250,7 +250,7 @@ namespace WF_Kurs
             this.listBoxEmails.Name = "listBoxEmails";
             this.listBoxEmails.Size = new System.Drawing.Size(155, 104);
             this.listBoxEmails.TabIndex = 20;
-            this.listBoxEmails.SelectedIndexChanged += new System.EventHandler(this.listBoxEmails_SelectedIndexChanged);
+            this.listBoxEmails.SelectedIndexChanged += new System.EventHandler(this.ListBoxEmails_SelectedIndexChanged);
             // 
             // buttonAddNumber
             // 
@@ -260,7 +260,7 @@ namespace WF_Kurs
             this.buttonAddNumber.TabIndex = 21;
             this.buttonAddNumber.Text = "Подтвердить";
             this.buttonAddNumber.UseVisualStyleBackColor = true;
-            this.buttonAddNumber.Click += new System.EventHandler(this.buttonAddNum_Click);
+            this.buttonAddNumber.Click += new System.EventHandler(this.ButtonAddNum_Click);
             // 
             // buttonAddEmail
             // 
@@ -270,7 +270,7 @@ namespace WF_Kurs
             this.buttonAddEmail.TabIndex = 22;
             this.buttonAddEmail.Text = "Подтвердить";
             this.buttonAddEmail.UseVisualStyleBackColor = true;
-            this.buttonAddEmail.Click += new System.EventHandler(this.buttonAddEm_Click);
+            this.buttonAddEmail.Click += new System.EventHandler(this.ButtonAddEm_Click);
             // 
             // buttonCancelAddNum
             // 
@@ -281,7 +281,7 @@ namespace WF_Kurs
             this.buttonCancelAddNum.Text = "Отмена";
             this.buttonCancelAddNum.UseVisualStyleBackColor = true;
             this.buttonCancelAddNum.Visible = false;
-            this.buttonCancelAddNum.Click += new System.EventHandler(this.buttonCancelAddNum_Click);
+            this.buttonCancelAddNum.Click += new System.EventHandler(this.ButtonCancelAddNum_Click);
             // 
             // buttonCancelAddEm
             // 
@@ -292,7 +292,7 @@ namespace WF_Kurs
             this.buttonCancelAddEm.Text = "Отмена";
             this.buttonCancelAddEm.UseVisualStyleBackColor = true;
             this.buttonCancelAddEm.Visible = false;
-            this.buttonCancelAddEm.Click += new System.EventHandler(this.buttonCancelAddEm_Click);
+            this.buttonCancelAddEm.Click += new System.EventHandler(this.ButtonCancelAddEm_Click);
             // 
             // Form1
             // 
@@ -322,18 +322,18 @@ namespace WF_Kurs
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxAdress);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.listBox);
+            this.Controls.Add(this.listBoxContacts);
             this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ListBox listBoxContacts;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxAdress;
         private System.Windows.Forms.Label labelName;
@@ -350,7 +350,7 @@ namespace WF_Kurs
         private System.Windows.Forms.Button buttonChange;
         private System.Windows.Forms.Button buttonAcceptAdd;
         private System.Windows.Forms.Button buttonVCard;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ListBox listBoxNumbers;
         private System.Windows.Forms.ListBox listBoxEmails;
         private System.Windows.Forms.Button buttonAddNumber;

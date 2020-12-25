@@ -14,12 +14,12 @@ using System.Net.Mail;
 
 namespace WF_Kurs
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private readonly ListOfContacts Contacts;
         private Person NewContact;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             Contacts = new ListOfContacts();
@@ -31,12 +31,12 @@ namespace WF_Kurs
                     Contacts = (ListOfContacts)formatter.Deserialize(fs);
             }
             for (int i = 0; i < Contacts.People.Count; i++)
-                listBox.Items.Add(Contacts.People[i].Name);
+                listBoxContacts.Items.Add(Contacts.People[i].Name);
         }
 
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxContacts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
+            if (listBoxContacts.SelectedIndex != -1)
             {
                 if (buttonAcceptCh.Visible || buttonAcceptAdd.Visible)
                 {
@@ -44,15 +44,15 @@ namespace WF_Kurs
                     buttonAcceptAdd.Visible = false;
                     buttonAcceptCh.Visible = false;
                 }
-                textBoxName.Text = Contacts.GetPerson(listBox.SelectedIndex).Name;
-                textBoxAdress.Text = Contacts.GetPerson(listBox.SelectedIndex).Adress;
-                textBoxDate.Text = Contacts.GetPerson(listBox.SelectedIndex).BDay;
+                textBoxName.Text = Contacts.GetPerson(listBoxContacts.SelectedIndex).Name;
+                textBoxAdress.Text = Contacts.GetPerson(listBoxContacts.SelectedIndex).Adress;
+                textBoxDate.Text = Contacts.GetPerson(listBoxContacts.SelectedIndex).BDay;
                 listBoxNumbers.Items.Clear();
                 listBoxEmails.Items.Clear();
-                for (int i = 0; i < Contacts.GetPerson(listBox.SelectedIndex).ListOfNumbers.Count; i++)
-                    listBoxNumbers.Items.Add(Contacts.GetPerson(listBox.SelectedIndex).ListOfNumbers[i]);
-                for (int i = 0; i < Contacts.GetPerson(listBox.SelectedIndex).ListOfEmails.Count; i++)
-                    listBoxEmails.Items.Add(Contacts.GetPerson(listBox.SelectedIndex).ListOfEmails[i]);
+                for (int i = 0; i < Contacts.GetPerson(listBoxContacts.SelectedIndex).ListOfNumbers.Count; i++)
+                    listBoxNumbers.Items.Add(Contacts.GetPerson(listBoxContacts.SelectedIndex).ListOfNumbers[i]);
+                for (int i = 0; i < Contacts.GetPerson(listBoxContacts.SelectedIndex).ListOfEmails.Count; i++)
+                    listBoxEmails.Items.Add(Contacts.GetPerson(listBoxContacts.SelectedIndex).ListOfEmails[i]);
             }
         }
 
@@ -81,10 +81,10 @@ namespace WF_Kurs
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
+            if (listBoxContacts.SelectedIndex != -1)
             {
-                Contacts.People.RemoveAt(listBox.SelectedIndex);
-                listBox.Items.RemoveAt(listBox.SelectedIndex);
+                Contacts.People.RemoveAt(listBoxContacts.SelectedIndex);
+                listBoxContacts.Items.RemoveAt(listBoxContacts.SelectedIndex);
                 ClearBoxes();
                 if (!textBoxName.ReadOnly)
                     ReadOnlySwitch();
@@ -95,15 +95,15 @@ namespace WF_Kurs
 
         private void ButtonChange_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
+            if (listBoxContacts.SelectedIndex != -1)
             {
                 if (textBoxName.ReadOnly)
                     ReadOnlySwitch();
-                textBoxName.Text = Contacts.GetPerson(listBox.SelectedIndex).Name;
-                textBoxAdress.Text = Contacts.GetPerson(listBox.SelectedIndex).Adress;
-                textBoxDate.Text = Contacts.GetPerson(listBox.SelectedIndex).BDay;
+                textBoxName.Text = Contacts.GetPerson(listBoxContacts.SelectedIndex).Name;
+                textBoxAdress.Text = Contacts.GetPerson(listBoxContacts.SelectedIndex).Adress;
+                textBoxDate.Text = Contacts.GetPerson(listBoxContacts.SelectedIndex).BDay;
                 buttonAcceptCh.Visible = true;
-                NewContact = new Person(Contacts.GetPerson(listBox.SelectedIndex));
+                NewContact = new Person(Contacts.GetPerson(listBoxContacts.SelectedIndex));
             }
         }
 
@@ -122,7 +122,7 @@ namespace WF_Kurs
                     NewContact.AddEmail(buf_email);
                 }
                 Contacts.AddNewContact(NewContact);
-                listBox.Items.Add(Contacts.People.Last().Name);
+                listBoxContacts.Items.Add(Contacts.People.Last().Name);
                 ReadOnlySwitch();
                 ClearBoxes();
                 buttonAcceptAdd.Visible = false;
@@ -151,8 +151,8 @@ namespace WF_Kurs
                     Email buf_email = new Email(listBoxEmails.Items[i].ToString());
                     NewContact.AddEmail(buf_email);
                 }
-                Contacts.People.Insert(listBox.SelectedIndex, NewContact);
-                Contacts.DeletePerson(listBox.SelectedIndex + 1);
+                Contacts.People.Insert(listBoxContacts.SelectedIndex, NewContact);
+                Contacts.DeletePerson(listBoxContacts.SelectedIndex + 1);
                 ReadOnlySwitch();
                 ClearBoxes();
                 buttonAcceptAdd.Visible = false;
@@ -166,23 +166,23 @@ namespace WF_Kurs
             NewContact.ChangeAdress(textBoxAdress.Text);
         }
 
-        private void textBoxName_TextChanged(object sender, EventArgs e)
+        private void TextBoxName_TextChanged(object sender, EventArgs e)
         {
             NewContact.ChangeName(textBoxName.Text);
         }
 
-        private void buttonVCard_Click(object sender, EventArgs e)
+        private void ButtonVCard_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
+            if (listBoxContacts.SelectedIndex != -1)
             {
-                saveFileDialog1.ShowDialog();
-                StreamWriter sw = new StreamWriter(saveFileDialog1.FileName + ".vcf");
-                sw.Write(Contacts.GetPerson(listBox.SelectedIndex));
+                saveFileDialog.ShowDialog();
+                StreamWriter sw = new StreamWriter(saveFileDialog.FileName + ".vcf");
+                sw.Write(Contacts.GetPerson(listBoxContacts.SelectedIndex));
                 sw.Close();
             }
         }
 
-        private void textBoxDate_MouseClick(object sender, MouseEventArgs e)
+        private void TextBoxDate_MouseClick(object sender, MouseEventArgs e)
         {
             if (!textBoxDate.ReadOnly && textBoxDate.Text == "YYYY-MM-DD")
                 textBoxDate.Text = "";
@@ -197,7 +197,7 @@ namespace WF_Kurs
             }
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             File.Delete(Directory.GetCurrentDirectory() + $"/Contacts.Contacts");
             BinaryFormatter formatter = new BinaryFormatter();
@@ -207,7 +207,7 @@ namespace WF_Kurs
             }
         }
 
-        private void buttonAddNum_Click(object sender, EventArgs e)
+        private void ButtonAddNum_Click(object sender, EventArgs e)
         {
             if (Check_number(textBoxNewNum.Text) || (textBoxNewNum.Text == "" && !listBoxNumbers.Enabled))
             {
@@ -229,7 +229,7 @@ namespace WF_Kurs
             }
         }
 
-        private void buttonAddEm_Click(object sender, EventArgs e)
+        private void ButtonAddEm_Click(object sender, EventArgs e)
         {
             if (CheckEmail(textBoxNewEmail.Text) || (textBoxNewEmail.Text == "" && !listBoxEmails.Enabled))
             {
@@ -251,7 +251,7 @@ namespace WF_Kurs
             }
         }
 
-        private void listBoxNumbers_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxNumbers_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!textBoxNewNum.ReadOnly && listBoxNumbers.SelectedIndex != -1)
             {
@@ -261,7 +261,7 @@ namespace WF_Kurs
             }
         }
 
-        private void listBoxEmails_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxEmails_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!textBoxNewEmail.ReadOnly && listBoxEmails.SelectedIndex != -1)
             {
@@ -271,14 +271,14 @@ namespace WF_Kurs
             }
         }
 
-        private void buttonCancelAddNum_Click(object sender, EventArgs e)
+        private void ButtonCancelAddNum_Click(object sender, EventArgs e)
         {
             textBoxNewNum.Text = "Добавить номер...";
             buttonCancelAddNum.Visible = false;
             listBoxNumbers.Enabled = true;
         }
 
-        private void buttonCancelAddEm_Click(object sender, EventArgs e)
+        private void ButtonCancelAddEm_Click(object sender, EventArgs e)
         {
             textBoxNewEmail.Text = "Добавить Email...";
             buttonCancelAddEm.Visible = false;
