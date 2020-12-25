@@ -229,7 +229,7 @@ namespace WF_Kurs
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonAddEm_Click(object sender, EventArgs e)
         {
             if (CheckEmail(textBoxNewEmail.Text) || (textBoxNewEmail.Text == "" && !listBoxEmails.Enabled))
             {

@@ -18,8 +18,6 @@ namespace WF_Kurs
             this.number = number;
         }
 
-        public void Change_number(string new_number) => number = new_number;
-
         public string ForVcard() => "TEL;HOME;VOICE:" + number + "\n";
 
         public override string ToString() => number;
@@ -34,8 +32,6 @@ namespace WF_Kurs
         {
             this.email = email;
         }
-
-        public void ChangeEmail(string newEmail) => email = newEmail;
 
         public string ForVcard() => "EMAIL;TYPE=INTERNET:" + email + "\n";
 
@@ -73,10 +69,6 @@ namespace WF_Kurs
             ListOfEmails = person.ListOfEmails;
         }
 
-        public void DeleteNumber(int index) => ListOfNumbers.RemoveAt(index);
-
-        public void DeleteEmail(int index) => ListOfEmails.RemoveAt(index);
-
         public void ChangeName(string Name) => this.Name = Name;
 
         public void ChangeAdress(string Adress) => this.Adress = Adress;
@@ -110,10 +102,6 @@ namespace WF_Kurs
         public ListOfContacts() => People = new List<Person>();
 
         public void AddNewContact(Person person) => People.Add(person);
-
-        public void AddNumber(Number number, int index) => People[index].AddNumber(number);
-
-        public void AddEmail(Email email, int index) => People[index].AddEmail(email);
 
         public void DeletePerson(int index)
         {

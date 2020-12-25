@@ -270,7 +270,7 @@ namespace WF_Kurs
             this.buttonAddEmail.TabIndex = 22;
             this.buttonAddEmail.Text = "Подтвердить";
             this.buttonAddEmail.UseVisualStyleBackColor = true;
-            this.buttonAddEmail.Click += new System.EventHandler(this.button2_Click);
+            this.buttonAddEmail.Click += new System.EventHandler(this.buttonAddEm_Click);
             // 
             // buttonCancelAddNum
             // 
